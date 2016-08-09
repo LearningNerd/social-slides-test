@@ -14,9 +14,9 @@ body {
   background: #fff;
   background-color: #fff; }
 
-.reveal {
+body {
   font-family: "Source Sans Pro", Helvetica, sans-serif;
-  font-size: 38px;
+  font-size: 30px;
   font-weight: normal;
   color: #222; }
 
@@ -29,6 +29,45 @@ body {
 .reveal .slides > section > section {
   line-height: 1.3;
   font-weight: inherit; }
+
+/*********************************************
+ * BRANDING (shows on all slides, outside of presentation)
+ *********************************************/
+.branding {
+  position:absolute;
+  bottom:0;
+  left:0;
+  z-index:3;
+  width:90%;
+  padding: 15px;
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+.button {
+  border: 1px solid #ccc;
+  padding:0.4em;
+  margin-right: 1em;
+  background: #eee;
+  font-size: 24px;
+}
+
+ a.button:hover {
+  color: #6ca0e8;
+  background: #222;  
+}
+
+@media (max-width: 54em) {
+  .branding, .button {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 33em) {
+  .branding, .button {
+    display: none;
+  }
+}
 
 /*********************************************
  * HEADERS
@@ -45,31 +84,97 @@ body {
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: normal;
-  text-transform: uppercase;
   text-shadow: none;
   word-wrap: break-word; }
 
 .reveal h1 {
-  font-size: 2.5em; }
+  font-size: 2.2em; }
 
 .reveal h2 {
-  font-size: 1.6em; }
+  font-size: 1.5em; }
 
-.reveal h3 {
-  font-size: 1.3em; }
+.reveal h3, .reveal h4 {
+  font-size: 1.2em; }
 
-.reveal h4 {
-  font-size: 1em; }
+/*********************************************
+ * CUSTOM STYLES
+ *********************************************/
 
-.reveal h1 {
-  text-shadow: none; }
+.reveal .small {
+  font-size:0.8em;
+}
 
+.reveal .smaller {
+  font-size:0.6em;
+}
+
+.reveal .big {
+  font-size:2em;
+}
+
+.reveal cite {
+  font-size:0.5em;
+  font-style: italic;
+}
+
+.reveal .noborder {
+  border:none;
+}
+
+.reveal .noshadow {
+  box-shadow: none;
+}
+
+.halves {
+  float: left;
+  width: 50%;
+  box-sizing:border-box;
+}
+
+.thirds {
+  float: left;
+  width: 33.3%;
+  box-sizing:border-box;
+}
+
+.fourths {
+  float: left;
+  width: 25%;
+  box-sizing:border-box;
+}
+
+.reveal .subhead {
+  font-size:1em;
+  font-weight: 600;
+  color:#444;  
+  font-style: italic;
+}
+
+.reveal .nomargin {
+  margin: 0;
+}
+
+.reveal iframe {
+  border: 1px solid #ddd;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: scroll;
+  -webkit-box-shadow: 4px 4px 12px 0px rgba(0,0,0,0.4);
+  -moz-box-shadow: 4px 4px 12px 0px rgba(0,0,0,0.4);
+  box-shadow: 4px 4px 12px 0px rgba(0,0,0,0.4);
+  z-index: 1;
+}
+
+.reveal .listspaces li {
+  margin-bottom:20px;
+}
 /*********************************************
  * OTHER
  *********************************************/
 .reveal p {
   margin: 20px 0;
-  line-height: 1.3; }
+  line-height: 1.3;
+}
 
 /* Ensure certain elements are never larger than the slide itself */
 .reveal img,
@@ -144,9 +249,9 @@ body {
   width: 90%;
   margin: 20px auto;
   text-align: left;
-  font-size: 0.55em;
+  /* font-size: 0.55em; */
   font-family: monospace;
-  line-height: 1.2em;
+  /*line-height: 1.2em; */
   word-wrap: break-word;
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3); }
 
@@ -204,14 +309,14 @@ body {
 /*********************************************
  * LINKS
  *********************************************/
-.reveal a {
+a {
   color: #2a76dd;
   text-decoration: none;
   -webkit-transition: color .15s ease;
   -moz-transition: color .15s ease;
   transition: color .15s ease; }
 
-.reveal a:hover {
+ a:hover {
   color: #6ca0e8;
   text-shadow: none;
   border: none; }
@@ -226,8 +331,11 @@ body {
 .reveal section img {
   margin: 15px 0px;
   background: rgba(255, 255, 255, 0.12);
-  border: 4px solid #222;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); }
+  border: 2px solid #ddd;
+  -webkit-box-shadow: 4px 4px 12px 0px rgba(0,0,0,0.4);
+  -moz-box-shadow: 4px 4px 12px 0px rgba(0,0,0,0.4);
+  box-shadow: 4px 4px 12px 0px rgba(0,0,0,0.4);
+}
 
 .reveal section img.plain {
   border: 0;
@@ -241,7 +349,7 @@ body {
 .reveal a:hover img {
   background: rgba(255, 255, 255, 0.2);
   border-color: #2a76dd;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.55); }
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); }
 
 /*********************************************
  * NAVIGATION CONTROLS

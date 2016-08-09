@@ -1,3 +1,25 @@
+// var express = require("express");
+// var app = express();
+// var http = require('http').Server(app);
+// var io = require('socket.io')(http);
+
+// app.use(express.static('public'));
+
+// http.listen(8000, function(){
+//   console.log('Listening on port 8000');
+// });
+
+// io.on('connection', function(socket){
+
+// 	console.log('A client connected!');
+
+// 	socket.on('move it', function(data){
+// 	    console.log(data);
+// 	    io.emit('move it', data);
+// 	});
+
+// });
+
 var express = require("express");
 var app = express();
 var http = require('http').Server(app);
@@ -17,6 +39,20 @@ io.on('connection', function(socket){
 	numSockets++;
 	console.log('A user connected! Number of users is now: ' + numSockets);
 
+
+	// CHAT-DEMO
+	socket.on('chat', function(data){
+	    console.log('CHAT: name: '+ data.name + ', message: ' + data.message);
+	    io.emit('chat', data);
+	});
+
+
+	// TEST1
+	socket.on('move it', function(data){
+	    console.log(data);
+	    io.emit('move it', data);
+	});
+
 	if (numSockets === 1) {
 		
 		socket.emit('new master', socket.id);
@@ -28,6 +64,7 @@ io.on('connection', function(socket){
 	    });
 
 		socket.on('disconnect', function(msg){		   
+			
 		    console.log('Master disconnected! Now disconnecting all users.');		    
 		    
 		    var socks = io.sockets.sockets;
@@ -46,5 +83,3 @@ io.on('connection', function(socket){
 	});
 
 });
-
-  
