@@ -3,19 +3,26 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-var bodyParser = require('body-parser');
-var jsonParser = bodyParser.json()
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
-
 var port = process.env.PORT || 8000;
+
+// global var -- super quick, hacked-together solution for now!
+var slidemaster = false;
 
 app.use(express.static('public'));
 
+app.get('/test', function(req,res){
+  res.send('session variable = ' + slidemaster);
+});
 
-app.get('/login', urlencodedParser, function (req, res) {
-  if (!req.body) return res.sendStatus(400)
-
+app.get('/login', function (req, res) {
+    if (!slidemaster) {
+      slidemaster = true;
+      console.log('set slidemaster = true.');
+    }
   	res.redirect('/');
+});
+
+
 
 io.on('connection', function(socket){
 
@@ -34,22 +41,22 @@ io.on('connection', function(socket){
 	    io.emit('move it', data);
 	});
 
-	if (numSockets === 1) {
+    if (slidemaster) {
+      slidemaster = false;
+  		socket.emit('new master', socket.id);
+  		console.log('Slide master connected. id: ' + socket.id);
 
-		socket.emit('new master', socket.id);
-		console.log('Slide master connected. id: ' + socket.id);
+  		socket.on("slidechanged", function (msg) {
+  			console.log('Slide master changed slide! Now broadcasting to users.')
+  	        socket.broadcast.emit("slidechanged", msg);
+  	    });
 
-		socket.on("slidechanged", function (msg) {
-			console.log('Slide master changed slide! Now broadcasting to users.')
-	        socket.broadcast.emit("slidechanged", msg);
-	    });
+  		socket.on('disconnect', function(msg){
 
-		socket.on('disconnect', function(msg){
+  		    console.log('Slide master disconnected!');
 
-		    console.log('Slide master disconnected!');
-
-		});
-	}
+  		});
+  	}
 
 	socket.on('disconnect', function(msg){
 	    console.log('A user disconnected.');
@@ -57,48 +64,6 @@ io.on('connection', function(socket){
 
 });
 
-
-
-});
-
-
-// app.use(passport.initialize());
-
-// passport.use(new passportlocal.Strategy(function(username,password,done){
-// 	//database would go here!
-// 	if (username === 'Liz') {
-// 		done(null, {id:username, name:username});
-// 	} else {
-// 		done(null, null);
-// 	}
-// }));
-
-// passport.serializeUser(function(user,done){
-// 	done(user.id);
-// });
-
-// passport.deserializeUser(function(id,done){
-// 	// would query the databse here!
-// 	done({id: id, name: id});
-// });
-
-app.get('/', function(req,res){
-	// if (req.isAuthenticated()) {
-	// 	res.send('hi liz!');
-	// } else {
-	// 	res.send('you are not authenticated!!!!');
-	// }
-
-
-	// res.render('index', {
-	// 	isAuthenticated: req.isAuthenticated(),
-	// 	user: req.user
-	// });
-});
-
-// app.post('/login', passport.authenticate('local'), function(req,res){
-// 	res.redirect('/');
-// });
 
 http.listen(port, function(){
   console.log('listening on ' + port);
