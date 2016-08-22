@@ -1,629 +1,670 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Build Your First Real-Time Interactive Web App</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">   
-    <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="css/white-customized.css" id="theme">
-    <!-- Code syntax highlighting -->
-    <link rel="stylesheet" href="lib/css/zenburn.css">
-    <!-- Printing and PDF exports -->
-    <script>
-      var link = document.createElement( 'link' );
-      link.rel = 'stylesheet';
-      link.type = 'text/css';
-      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-      document.getElementsByTagName( 'head' )[0].appendChild( link );
-    </script>
-    <!--[if lt IE 9]>
-    <script src="lib/js/html5shiv.js"></script>
-    <![endif]-->
-  </head>
-  <body>    
-
-
-    <div class="reveal">
-      <div class="slides">
-       
-        <section>
-          <h1 style="margin-bottom:10px;">Build Your First Real-Time Interactive Web App</h1>
-          <h2 class="subhead nomargin">with NodeJS, Express & SocketIO</h2>
-          
-          <iframe style="margin-top: 50px; height: 300px;" src="/chat-demo/index.html"></iframe>      
-        </section>
-
-        <section>          
-          <h2>Learning with <a href="https://en.wikipedia.org/wiki/Black_box">Black Boxes</a></h2>
- 
-          <img class="noborder noshadow" src="images/blackbox.png" width="70%">
-          
-          <blockquote class="small">
-             <p><a href="https://en.wikipedia.org/wiki/Black_box">Blackboxing</a> is "the way scientific and technical work is made invisible by its own success.</p>
-             <p>When a machine runs efficiently, when a matter of fact is settled, one need focus only on its inputs and outputs and not on its internal complexity.</p>
-             <p class="nomargin">Thus, paradoxically, the more science and technology succeed, the more opaque and obscure they become."</p>
-             <p>-- <a href="http://www.bruno-latour.fr/node/96">Bruno Latour</a></p>
-          </blockquote>
-        </section>
-
-        <section>
-          <h2>Anything can be a black box</h2>
-          <h3 class="subhead">and they're everywhere!</h3>
-          <img class="noborder noshadow nomargin" src="images/breakfast-blackbox1.png" width="100%">
-          
-          <p class="nomargin"><cite>Photos of bread/toast by <a href="https://en.wikipedia.org/wiki/File:Toast-1.jpg">Rainer Zenz</a></cite></p>
-        </section>
-
-        <section>
-          <h2>Tools we're using today</h2>
-          <p class="small">Even if you don't completely understand  how all these tools work yet, you can still use them to make <span style="text-decoration:line-through;">a delicious breakfast</span> a cool web app!</p>
-          <img class="noborder noshadow nomargin" src="images/yummytools.png" width="100%">
-          
-          <p class="nomargin"><cite>Delicious breakfast photo by <a href="https://commons.wikimedia.org/wiki/File:Breakfastbyasim.jpg">Asimzb on Wikimedia</a></cite></p>
-        </section>
-
-        <section>          
-          <h2>Tools we're using today</h2>
-          <div class="fourths">
-              <p><strong>JavaScript Tools:</strong></p>
-            <ul>
-              <li><a href="https://nodejs.org/en/">NodeJS</a></li>
-              <li><a href="https://www.npmjs.com/">npm</a></li>
-              <li><a href="https://expressjs.com/">Express</a></li>
-              <li><a href="https://socket.io/">SocketIO</a></li>
-            </ul>
-          </div>
-          <div class="fourths">
-            <p><strong>Web Services:</strong></p>
-            <ul>            
-              <li><a href="https://github.com/">GitHub</a></li>
-              <li><a href="https://heroku.com/">Heroku</a></li>
-            </ul>
-          </div>
-          
-          <div class="fourths">
-            <p><strong>Languages:</strong></p>
-            <ul>            
-              <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML">HTML</a></li>
-              <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a></li>
-              <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">JavaScript</a></li>              
-            </ul>
-          </div>   
-
-          <div class="fourths">
-            <p><strong>Software Tools:</strong></p>
-            <ul>            
-              <li><a href="https://www.learnenough.com/text-editor-tutorial">Text Editor</a></li>
-              <li><a href="https://www.learnenough.com/command-line-tutorial">Command Line Interface</a></li>
-              <li><a href="https://en.wikipedia.org/wiki/Web_browser">Web Browser</a></li>              
-            </ul>
-          </div>                   
-        </section>
-
-        <section>
-          <h2 class="subhead">First things first:</h2>
-          <h2 class="big">Setup and Installation</h2>
-        </section>
-
-        <section>
-          <h2>Download the sample code</h2>
-          <p>Go to the link below, click the green "Clone or download" button, then click "Download ZIP"</p>
-          <p><a href="https://github.com/LearnToCodeLA/chatdemo">https://github.com/LearnToCodeLA/chatdemo</a></p>
-
-          <img src="images/samplecode.png">
-        </section>
-
-        <section>
-          <h2>Unzip the project folder</h2>
-          <p>Open up the downloaded .zip file; there will be a folder inside it. Move that folder onto your desktop (or another place where you can find it easily)</p>
-
-          <img src="images/unzip.png">
-        </section>
-
-        <section>
-          <h2>Install NodeJS from <a href="https://nodejs.org/">NodeJS.org</a></h2>
-          <p>Choose the LTS "Recommended for Most Users" version:
-          <a href="https://nodejs.org/"><img src="images/nodejs-install1.png" width="70%"></a>  
-        </section>
-
-        <section>
-          <p>Then open the installer and follow the instructions. (Just click "Next" a bunch of times and let it do its thing; all the default settings should be fine.)</p>
-          <img class="noborder" src="images/nodejs-install2.png" width="60%">         
-        </section>
-
-        <section>
-          <h2>Time to geek out in the command line!</h2>
-          <p><strong>Windows:</strong> Open Command Prompt (you can search for it in the Start menu)</p>
-
-          <p><strong>Mac:</strong> Open Terminal (you can search for it in Finder or Spotlight)</p>
-            <img class="halves" src="images/open-commandprompt.png">
-            <img class="halves" src="images/open-terminal.png">
-        </section>
-
-        <section>
-          <p style="width:90%;">To check the version of NodeJS and confirm it installed correctly, type this and hit enter:</p>
-          <pre><code contenteditable="">node -v</code></pre>
-          <img src="images/commandprompt-node-v.png" width="80%">
-        </section>
-
-        <section>
-          <p>Next, let's <strong>cd</strong> or "Change Directories" to go into our project folder.</p>
-          <p>Here's a nifty trick: type "cd" followed by a space, and then drag and drop your folder into the command line and hit enter:</p>
-          <img class="noborder noshadow" src="images/commandprompt-dragndrop.gif" width="90%">
-        </section>
-
-        <section>
-          <h2 style="margin-bottom:40px;">Install Express and SocketIO</h2>
-          <p>Next we'll use <a href="https://www.npmjs.com/">npm</a> to install the dependencies listed in our package.json file by typing this into the command line:</p>
-          
-          <pre style="margin:50px;"><code contenteditable="">npm install</code></pre>
-
-          <p>This will download a bunch of stuff and create a "node_modules" folder with all the code needed for <a href="https://expressjs.com/">Express</a> and <a href="https://socket.io/">SocketIO</a>.</p>
-        </section>
-        
-        <section>
-          <h2>Let's take a look at our files</h2>
-          <div class="halves">
-            <p>Inside "chatdemo" folder:</p>
-          <ul>            
-              <li>package.json</li>
-              <li>app.js</li>
-              <li>node_modules/</li>
-              <li>public/</li>
-              <ul>
-                <li>index.html</li>
-                <li>local.js</li>
-                <li>style.css</li>
-              </ul>              
-            </ul>
-          </div>
-          <img class="halves noborder noshadow" src="images/files.png">
-        </section>
-
-        <section>
-          <h2>package.json</h2>
-          <pre><code class="smaller" data-trim contenteditable="">
-{
-  "name": "socket-chat-example",
-  "version": "0.0.1",
-  "description": "my first socket.io app",
-  "dependencies": {
-    "express": "^4.10.2",
-    "socket.io": "^1.4.8"
-  },
-  "engines": {
-    "node": "4.4.3"
-  },
-  "scripts": {
-    "start": "node app.js"
-  }
-}
-          </code></pre>
-        </section>
-
-        <section>
-          <h2>app.js</h2>
-          <pre><code class="javascript smaller" data-trim contenteditable="">
-var express = require("express");
-var app = express();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-var port = process.env.PORT || 8000;
-
-app.use(express.static('public'));
-
-http.listen(port, function(){
-  console.log('listening on ' + port);
-});
-
-io.on('connection', function(socket){
-    
-  console.log('A user connected!');
-
-  socket.on('chat', function(data){
-      console.log('CHAT: name: '+ data.name + ', message: ' + data.message);
-      io.emit('chat', data);
-  });
-
-  socket.on('disconnect', function(msg){      
-      console.log('A user disconnected.');      
-  });
-
-});
-          </code></pre>
-        </section>
-
-
-        <section>
-          <div class="halves">
-          <h2>public/index.html</h2>
-          <pre><code class="smaller" data-trim contenteditable="">
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-  &lt;head&gt;
-    &lt;title&gt;Simple Chat App Demo&lt;/title&gt;
-    &lt;meta charset=&quot;utf-8&quot;&gt;    
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
-  &lt;/head&gt;
-
-  &lt;body&gt;
-   
-    &lt;div id=&quot;chat&quot;&gt;      
-    &lt;/div&gt;
-
-    &lt;div class=&quot;interface&quot;&gt;
-      &lt;input id=&quot;nameinput&quot; type=&quot;text&quot; value=&quot;Anonymous&quot; placeholder=&quot;Your Name&quot;&gt;&lt;input id=&quot;messageinput&quot; type=&quot;text&quot; placeholder=&quot;Write your message here&quot;&gt;&lt;button id=&quot;send&quot;&gt;Send&lt;/button&gt;
-    &lt;/div&gt;
-    
-    &lt;script src=&quot;/socket.io/socket.io.js&quot;&gt;&lt;/script&gt;
-    &lt;script src=&quot;local.js&quot;&gt;&lt;/script&gt;
-
-  &lt;/body&gt;
-&lt;/html&gt;
-            </code></pre>
-          </div>
-        
-          <div class="halves">
-            <h2>public/style.css</h2>
-          <pre><code class="smaller" data-trim contenteditable="">
-body {
-  font-size: 20px;
-}
-#chat {
-  margin-bottom: 1em;  
-}
-.message {
-  padding: 0.5em;
-}
-.message:nth-child(even) {
-  background-color: #eee;
-}
-.message:last-child {
-  margin-bottom: 3.5em;
-}
-.username {
-  font-weight: bold;
-}
-
-.interface {
-  height: 3.5em;
-  position: fixed;  
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 10px;
-  box-sizing: border-box;
-  background: #fff;
-  box-shadow: 10px 10px 5px #888888;
-}
-input, button {
-  padding: .5em;
-  box-sizing: border-box;
-  font-size: 16px;
-}
-#nameinput {
-  width: 20%;
-}
-#messageinput {
-  width: 60%;  
-}
-#send {
-  width: 20%;  
-}
-            </code></pre>
-          </div>
-        </section>
-
-                <section>
-          <h2>public/local.js</h2>
-          <pre><code class="javascript smaller" data-trim contenteditable="">
-var socket = io();
-
-var sendButton = document.getElementById("send");
-var nameInput = document.getElementById("nameinput");
-var messageInput = document.getElementById("messageinput");
-
-// if user clicks "Send" button, send message
-sendButton.addEventListener("click", sendMessage);
-
-// if ENTER key was pressed, send message
-window.addEventListener("keypress", function(event){
-  if (event.which === 13) {   
-    sendMessage();
-  } 
-});
-
-// when "chat" event received, display message
-socket.on('chat', function(data){
-    console.log('RECEIVED: name: '+ data.name + ', message: ' + data.message);
-  displayNewMessage(data.name, data.message);
-});
-
-
-function sendMessage(event) {
-  console.log('SENDING: name: '+ nameInput.value + ', message: ' + messageInput.value);
-  socket.emit('chat', {name: nameInput.value, message: messageInput.value} );  
-}
-
-function displayNewMessage (username, message) {
-  var newMessage = document.createElement('div');
-  newMessage.className = 'message';
-  var messageTextNode = document.createTextNode(': ' + message);
-
-  var newMessageUser = document.createElement('span');
-  newMessageUser.className = 'username';
-  newMessageUser.innerText = username;
-  newMessage.appendChild(newMessageUser);
-  newMessage.appendChild(messageTextNode);
-
-  document.getElementById('chat').appendChild(newMessage);
-
-  window.scrollTo(0,document.body.scrollHeight);
-}
-          </code></pre>
-        </section>
-
-        <section>
-          <h1 style="font-size:1.6em;">Boilerplate for NodeJS/Express/Socket.IO</h1>
-          <div class="halves">          
-          <h2>Client</h2>
-          <pre><code class="smaller" data-trim contenteditable="">
-var socket = io();
-            </code></pre>
-          </div>
-        
-          <div class="halves">
-            <h2>Server</h2>
-          <pre><code class="smaller" data-trim contenteditable="">
-var express = require("express");
-var app = express();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-var port = process.env.PORT || 8000;
-
-app.use(express.static('public'));
-
-http.listen(port, function(){
-  console.log('listening on ' + port);
-});
-            </code></pre>
-          </div>
-        </section>
-
-                <section>
-          <h3>Do stuff when a user connects to server</h3>            
-          <pre><code class="smaller" data-trim contenteditable="">
-// Server code (after boilerplate)
-io.on('connection', function(socket){
-    
-  console.log('A user connected!');
-
-});
-            </code></pre>
-        </section>
-
-                        <section>
-          <h3>Do something when a user disconnects from server</h3>            
-          <pre><code class="smaller" data-trim contenteditable="">
-// Server code (after boilerplate)
-io.on('connection', function(socket){
-    
-  socket.on('disconnect', function(msg){      
-      console.log('A user disconnected.');      
-  });
-
-});
-            </code></pre>
-        </section>
-
-        <section>
-          <h3>Do something when server recieves an event/message</h3>            
-          <pre><code class="smaller" data-trim contenteditable="">
-// Server code (after boilerplate)
-io.on('connection', function(socket){
-    
-  socket.on('event name here', function(data){
-      console.log('Message receieved!');
-  });
-
-});
-            </code></pre>
-        </section>
-
-                <section>
-          <h1 style="font-size:1.6em;">Sending stuff from client to server</h1>           
-          <div class="halves">          
-          <h2>Client</h2>
-          <pre><code class="smaller" data-trim contenteditable="">
-socket.emit('event name here',
-  'Sending a message! Or JSON data!'
-);
-            </code></pre>
-          </div>
-        
-          <div class="halves">
-            <h2>Server</h2>
-          <pre><code class="smaller" data-trim contenteditable="">
-// Server code (after boilerplate)
-io.on('connection', function(socket){
-    
-  socket.on('event name here', function(data){
-      console.log('Message receieved!');
-  });
-
-});
-            </code></pre>
-          </div>
-        </section>
-
-        <section>
-          <h1 style="font-size:1.6em;">Sending stuff from server to client(s)</h1>           
-          <div class="halves">          
-          <h2>Client</h2>
-          <pre><code class="smaller" data-trim contenteditable="">
-socket.on('event name here ', function(data){
-    console.log('Message recieved: ' + data);
-});
-            </code></pre>
-          </div>
-        
-          <div class="halves">
-            <h2>Server</h2>
-          <pre><code class="smaller" data-trim contenteditable="">
-// Server code (after boilerplate)
-io.on('connection', function(socket){
-    
-  // send to ALL clients
-  io.emit('event name here', 'Hi all!');
-
-});
-            </code></pre>
-          </div>
-        </section>
-
-        <section>
-          <h2 style="margin-bottom:40px;">Let's run our app!</h2>
-          <p>To run our web server and see our app in action, go back to the command line and run this command:</p>
-          
-          <pre style="margin:50px;"><code contenteditable="">node app.js</code></pre>
-
-          <p>This tells NodeJS to run our "app.js" file, which starts the web server and puts everything into action. If it works, you'll see a message in the command line that it's listening on port 8000.</p>
-        </section>
-
-        <section>
-          <h2 style="margin-bottom:40px;">Open the app in your web browser</h2>
-          <p>To connect to our local web server, open a new tab in your web browser and go to the following URL:</p>
-          
-          <pre style="margin:50px;"><code contenteditable="">http://localhost:8000</code></pre>
-
-          <p>And you should see your app! Check the command line; if the connection is working, it will show the message "A user connected!"</p>
-
-          <p>Open the same URL in another browser tab and any messages you send will appear in both instances of your app. Cool, huh?</p>
-        </section>
-
-        <section>
-          <h1 class="big">Now let's publish it online with GitHub and Heroku!</h1>
-        </section>
-
-        <section>          
-          <h2>The quick and dirty way to upload to GitHub:</h2>
-          <div class="halves">
-          <ol class="listspaces" style="margin-top:1.5em;">
-            <li>Log into GitHub and go to <a href="https://github.com/new">https://github.com/new</a></li>
-            <li>Name your new repo (the name doesn't matter)</li>
-            <li>Check the box next to "Initialize this repository with a README"</li>
-            <li>Click the green "Create repository" button</li>
-          </ol>
-          </div>
-          <div class="halves">
-            <img class="nomargin" src="images/github1.png">
-            <img class="nomargin" src="images/github2.png"> 
-          </div>
-        </section>
-
-        <section>          
-          <h2>The quick and dirty way to upload to GitHub:</h2>          
-          <ol start="5" style="display:block; margin:1.1em 0 0.7em 5.5em;">            
-            <li>On your new repository page, click on "Upload Files"</li>            
-          </ol>        
-          <img class="nomargin" src="images/github3.png">
-        </section>
-        
-        <section>          
-          <h2>The quick and dirty way to upload to GitHub:</h2>          
-        <ol start="6" style="display:block; margin:2em 0 1em 2em;">                     
-            <li>Drag and drop your project files from your local folder <strong><em>except for the "node_modules" folder</em></strong>, then click the green "Commit changes" button</li>
-          </ol> 
-        <img src="images/github-dragdrop.gif">
-        </section>
-         
-         <section>          
-          <h2>Now let's publish it live on Heroku:</h2>          
-          <ol class="listspaces" style="margin:0.6em 0;">            
-            <li>Log into Heroku and go to <a href="https://dashboard.heroku.com/new">https://dashboard.heroku.com/new</a></li>
-            <li>Give your app a unique name and click "Create App"</li>          
-          </ol>        
-          <img class="nomargin" src="images/heroku2.png">
-        </section>
-
-        <section>          
-          <h2>Now let's publish it live on Heroku:</h2>          
-          <ol start="3" class="listspaces" style="margin:0.6em 0;">            
-            <li>Next to "Deployment Method", click on GitHub</li>            
-          </ol>        
-          <img class="nomargin" src="images/heroku3.png">
-        </section>
-
-        <section>          
-          <h2>Now let's publish it live on Heroku:</h2>          
-          <ol start="4" class="listspaces" style="margin:0.6em 0;">            
-            <li>Click "Connect to GitHub" at the bottom</li>
-            <li>Another window will open up; click "Authorize application" to link GitHub to Heroku</li>            
-          </ol>        
-          <img class="nomargin" src="images/heroku4.png">
-        </section>
-
-        <section>          
-          <h2>Now let's publish it live on Heroku:</h2>          
-          <ol start="6" class="listspaces" style="margin:0.6em 0;">            
-            <li>Next to "Connect to GitHub", search for the name of your GitHub respository and then click "Connect" when your repository name appears</li>            
-          </ol>        
-          <img class="nomargin" src="images/heroku5.png">
-        </section>
-
-        <section>          
-          <h2>Now let's publish it live on Heroku:</h2>          
-          <ol start="7" class="listspaces" style="margin:0.6em 0;">            
-            <li>Next to "Automatic Deploys", click "Enable Automatic Deploys" so that any future updates on GitHub will also update your app on Heroku</li>            
-          </ol>        
-          <img class="nomargin" src="images/heroku6.png">
-        </section>
-
-        <section>          
-          <h2>Now let's publish it live on Heroku:</h2>          
-          <ol start="8" class="listspaces" style="margin:0.6em 0;">            
-            <li>Almost done! Next to "Manual Deploy", click "Deploy Branch" to make your app live on Heroku right now</li>            
-          </ol>        
-          <img class="nomargin" src="images/heroku7.png">
-        </section>
-
-        <section>          
-          <h2>Now let's publish it live on Heroku:</h2>          
-          <ol start="9" class="listspaces" style="margin:0.6em 0;">            
-            <li>After a couple minutes, your app should be online! To try it out, click "View App" at the bottom</li>            
-          </ol>        
-          <img class="nomargin" src="images/heroku8.png">
-        </section>
-
-        <section>
-          <h1 class="big">Congratulations!</h1>
-          <h2 class="subhead">Now you can share your first interactive app with the world!</h2>
-          <h2 class="subhead">Now let's tinker with it!</h2>
-          <p>Check out more in the SocketIO docs: <a href="http://socket.io/docs/">http://socket.io/docs/</a></p>
-        </section>
-
-      </div>
-    </div>
-
-      <footer class="branding">        
-        <a class="button" href="https://github.com/LearnToCodeLA/chatdemo">Sample Code</a>
-        <a class="button" href="#">Slides</a>
-        <cite>By <a href="https://twitter.com/LearningNerd">Liz Krane</a> for <a href="http://www.meetup.com/LearnToCodeLA/">Learn to Code LA</a></cite>        
-      </footer>
-
-    <script src="lib/js/head.min.js"></script>
-    <script src="/reveal.js"></script>
-
-    <script>
-      Reveal.initialize({
-        dependencies: [
-          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-          { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } }
-        ]
-      });
-    </script>
-
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/local.js"></script>
-  </body>
-</html>
+<head>
+	<title>Build Your First Real-Time Interactive Web App</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/white-customized.css" id="theme">
+	<!-- Code syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+	<!-- Printing and PDF exports -->
+	<script>
+	var link = document.createElement( 'link' );
+	link.rel = 'stylesheet';
+	link.type = 'text/css';
+	link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+	document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<!--[if lt IE 9]>
+	<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+<body>
+
+
+	<div class="reveal">
+		<div class="slides">
+
+			<section>
+				<h1 style="margin-bottom:10px;">Build Your First Real-Time Interactive Web App</h1>
+				<h2 class="subhead nomargin">with NodeJS, Express & SocketIO</h2>
+
+				<iframe style="margin-top: 50px; height: 300px;" src="/chat-demo/index.html"></iframe>
+			</section>
+
+			<section>
+				<h2>Demo 2 -- interactive canvas??</h2>
+			</section>
+
+			<section>
+				<h2>Demo 3 -- ??</h2>
+			</section>
+
+			<section>
+				<h2>screenshots / links to demos??</h2>
+			</section>
+
+			<section>
+				<h2 class="big">Learning with <a href="https://en.wikipedia.org/wiki/Black_box">Black Boxes</a></h2>
+
+				<img class="noborder noshadow" style="margin-top:50px;" src="images/blackbox.png">
+
+			</section>
+
+			<section>
+				<h2>Anything can be a black box</h2>
+
+				<img class="noborder noshadow nomargin" src="images/breakfast-blackbox1.png" width="100%">
+
+				<p class="nomargin"><cite>Photos of bread/toast by <a href="https://en.wikipedia.org/wiki/File:Toast-1.jpg">Rainer Zenz</a></cite></p>
+			</section>
+
+			<section>
+				<h2>The Black Box Paradox</h2>
+
+				<blockquote style="text-align:left; padding:20px;">
+					<p><a href="https://en.wikipedia.org/wiki/Black_box">Blackboxing</a> is "the way scientific and technical work is <strong>made invisible by its own success</strong>.</p>
+					<p>When a machine runs efficiently, when a matter of fact is settled, one need focus only on its inputs and outputs and not on its internal complexity.</p>
+					<p class="nomargin"><strong>Thus, paradoxically, the more science and technology succeed, the more opaque and obscure they become</strong>."</p>
+					<p style="text-align:right;">-- <a href="http://www.bruno-latour.fr/node/96">Bruno Latour</a></p>
+				</blockquote>
+			</section>
+
+			<section>
+				<h2>Tools we're using today</h2>
+				<p class="small">Even if you don't completely understand  how all these tools work yet, you can still use them to make <span style="text-decoration:line-through;">a delicious breakfast</span> a cool web app!</p>
+				<img class="noborder noshadow nomargin" src="images/yummytools.png" width="100%">
+
+				<p class="nomargin"><cite>Delicious breakfast photo by <a href="https://commons.wikimedia.org/wiki/File:Breakfastbyasim.jpg">Asimzb on Wikimedia</a></cite></p>
+			</section>
+
+			<section>
+				<h2>Tools we're using today</h2>
+				<div class="fourths">
+					<p><strong>JavaScript Tools:</strong></p>
+					<ul>
+						<li><a href="https://nodejs.org/en/">NodeJS</a></li>
+						<li><a href="https://www.npmjs.com/">npm</a></li>
+						<li><a href="https://expressjs.com/">Express</a></li>
+						<li><a href="http://socket.io/">SocketIO</a></li>
+					</ul>
+				</div>
+				<div class="fourths">
+					<p><strong>Web Services:</strong></p>
+					<ul>
+						<li><a href="https://github.com/">GitHub</a></li>
+						<li><a href="https://heroku.com/">Heroku</a></li>
+					</ul>
+				</div>
+
+				<div class="fourths">
+					<p><strong>Languages:</strong></p>
+					<ul>
+						<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML">HTML</a></li>
+						<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a></li>
+						<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">JavaScript</a></li>
+					</ul>
+				</div>
+
+				<div class="fourths">
+					<p><strong>Software Tools:</strong></p>
+					<ul>
+						<li><a href="https://www.learnenough.com/text-editor-tutorial">Text Editor</a></li>
+						<li><a href="https://www.learnenough.com/command-line-tutorial">Command Line Interface</a></li>
+						<li><a href="https://developers.google.com/web/tools/chrome-devtools/">Web Browser</a></li>
+					</ul>
+				</div>
+			</section>
+
+			<section>
+				<h2 class="subhead">Let's start with a refresher:</h2>
+				<h2 class="big">JavaScript in 5 Minutes</h2>
+			</section>
+
+			<section>
+				<h2>Make some variables, in web console...:</h2>
+				<pre><code id="variablestest" class="smaller" data-trim contenteditable="" style="height:450px;">
+// this will be javascript
+var myName = "Liz";
+
+
+				</code></pre>
+			</section>
+
+			<section>
+				<h2>Make some variables!</h2>
+				<p data-height="450" data-theme-id="dark" data-slug-hash="ZONyjP" data-default-tab="js,result" data-user="LearnToCodeLA" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/LearnToCodeLA/pen/ZONyjP/">ZONyjP</a> by Learn to Code LA (<a href="http://codepen.io/LearnToCodeLA">@LearnToCodeLA</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+				<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+			</section>
+
+			<section>
+				<h2 class="subhead">Now for the boring part:</h2>
+				<h2 class="big">Setup and Installation</h2>
+			</section>
+
+			<section>
+				<h2>Download the sample code</h2>
+				<p>Go to the link below, click the green "Clone or download" button, then click "Download ZIP"</p>
+				<p><a href="https://github.com/LearnToCodeLA/chatdemo">https://github.com/LearnToCodeLA/chatdemo</a></p>
+
+				<img src="images/samplecode.png">
+			</section>
+
+			<section>
+				<h2>Unzip the project folder</h2>
+				<p>Open up the downloaded .zip file; there will be a folder inside it. Move that folder onto your desktop (or another place where you can find it easily)</p>
+
+				<img src="images/unzip.png">
+			</section>
+
+			<section>
+				<h2>Install NodeJS from <a href="https://nodejs.org/">NodeJS.org</a></h2>
+				<p>Choose the LTS "Recommended for Most Users" version:
+					<a href="https://nodejs.org/"><img src="images/nodejs-install1.png" width="70%"></a>
+				</section>
+
+				<section>
+					<p>Then open the installer and follow the instructions. (Just click "Next" a bunch of times and let it do its thing; all the default settings should be fine.)</p>
+					<img class="noborder" src="images/nodejs-install2.png" width="60%">
+				</section>
+
+				<section>
+					<h2>Time to geek out in the command line!</h2>
+					<p><strong>Windows:</strong> Open Command Prompt (you can search for it in the Start menu)</p>
+
+					<p><strong>Mac:</strong> Open Terminal (you can search for it in Finder or Spotlight)</p>
+					<img class="halves" src="images/open-commandprompt.png">
+					<img class="halves" src="images/open-terminal.png">
+				</section>
+
+				<section>
+					<p style="width:90%;">To check the version of NodeJS and confirm it installed correctly, type this and hit enter:</p>
+					<pre><code contenteditable="">node -v</code></pre>
+					<img src="images/commandprompt-node-v.png" width="80%">
+				</section>
+
+				<section>
+					<p>Next, let's <strong>cd</strong> or "Change Directories" to go into our project folder.</p>
+					<p>Here's a nifty trick: type "cd" followed by a space, then drag and drop your folder into the command line and hit enter:</p>
+					<img class="noborder noshadow" src="images/commandprompt-dragndrop.gif" width="90%">
+				</section>
+
+				<section>
+					<h2 style="margin-bottom:40px;">Install Express and SocketIO</h2>
+					<p>Next we'll use <a href="https://www.npmjs.com/">npm</a> to install the dependencies listed in our package.json file by typing this into the command line:</p>
+
+					<pre style="margin:50px;"><code contenteditable="">npm install</code></pre>
+
+					<p>This will download a bunch of stuff and create a "node_modules" folder with all the code needed for <a href="https://expressjs.com/">Express</a> and <a href="https://socket.io/">SocketIO</a>.</p>
+				</section>
+
+				<section>
+					<h2>Let's take a look at our files</h2>
+					<div class="halves">
+						<p>Inside "chatdemo" folder:</p>
+						<ul>
+							<li>package.json</li>
+							<li>app.js</li>
+							<li>node_modules/</li>
+							<li>public/</li>
+							<ul>
+								<li>index.html</li>
+								<li>local.js</li>
+								<li>style.css</li>
+							</ul>
+						</ul>
+					</div>
+					<img class="halves noborder noshadow" src="images/files.png">
+				</section>
+
+				<section>
+					<h2>package.json</h2>
+					<pre><code class="smaller" data-trim contenteditable="">
+						{
+							"name": "socket-chat-example",
+							"version": "0.0.1",
+							"description": "my first socket.io app",
+							"dependencies": {
+								"express": "^4.10.2",
+								"socket.io": "^1.4.8"
+							},
+							"engines": {
+								"node": "4.4.3"
+							},
+							"scripts": {
+								"start": "node app.js"
+							}
+						}
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>app.js</h2>
+					<pre><code class="javascript smaller" data-trim contenteditable="">
+						var express = require("express");
+						var app = express();
+						var http = require('http').Server(app);
+						var io = require('socket.io')(http);
+						var port = process.env.PORT || 8000;
+
+						app.use(express.static('public'));
+
+						http.listen(port, function(){
+							console.log('listening on ' + port);
+						});
+
+						io.on('connection', function(socket){
+
+							console.log('A user connected!');
+
+							socket.on('chat', function(data){
+								console.log('CHAT: name: '+ data.name + ', message: ' + data.message);
+								io.emit('chat', data);
+							});
+
+							socket.on('disconnect', function(msg){
+								console.log('A user disconnected.');
+							});
+
+						});
+					</code></pre>
+				</section>
+
+
+				<section>
+					<div class="halves">
+						<h2>public/index.html</h2>
+						<pre><code class="smaller" data-trim contenteditable="">
+							&lt;!DOCTYPE html&gt;
+							&lt;html&gt;
+							&lt;head&gt;
+							&lt;title&gt;Simple Chat App Demo&lt;/title&gt;
+							&lt;meta charset=&quot;utf-8&quot;&gt;
+							&lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+							&lt;/head&gt;
+
+							&lt;body&gt;
+
+							&lt;div id=&quot;chat&quot;&gt;
+							&lt;/div&gt;
+
+							&lt;div class=&quot;interface&quot;&gt;
+							&lt;input id=&quot;nameinput&quot; type=&quot;text&quot; value=&quot;Anonymous&quot; placeholder=&quot;Your Name&quot;&gt;&lt;input id=&quot;messageinput&quot; type=&quot;text&quot; placeholder=&quot;Write your message here&quot;&gt;&lt;button id=&quot;send&quot;&gt;Send&lt;/button&gt;
+							&lt;/div&gt;
+
+							&lt;script src=&quot;/socket.io/socket.io.js&quot;&gt;&lt;/script&gt;
+							&lt;script src=&quot;local.js&quot;&gt;&lt;/script&gt;
+
+							&lt;/body&gt;
+							&lt;/html&gt;
+						</code></pre>
+					</div>
+
+					<div class="halves">
+						<h2>public/style.css</h2>
+						<pre><code class="smaller" data-trim contenteditable="">
+							body {
+								font-size: 20px;
+							}
+							#chat {
+								margin-bottom: 1em;
+							}
+							.message {
+								padding: 0.5em;
+							}
+							.message:nth-child(even) {
+								background-color: #eee;
+							}
+							.message:last-child {
+								margin-bottom: 3.5em;
+							}
+							.username {
+								font-weight: bold;
+							}
+
+							.interface {
+								height: 3.5em;
+								position: fixed;
+								bottom: 0;
+								left: 0;
+								width: 100%;
+								padding: 10px;
+								box-sizing: border-box;
+								background: #fff;
+								box-shadow: 10px 10px 5px #888888;
+							}
+							input, button {
+								padding: .5em;
+								box-sizing: border-box;
+								font-size: 16px;
+							}
+							#nameinput {
+								width: 20%;
+							}
+							#messageinput {
+								width: 60%;
+							}
+							#send {
+								width: 20%;
+							}
+						</code></pre>
+					</div>
+				</section>
+
+				<section>
+					<h2>public/local.js</h2>
+					<pre><code class="javascript smaller" data-trim contenteditable="">
+						var socket = io();
+
+						var sendButton = document.getElementById("send");
+						var nameInput = document.getElementById("nameinput");
+						var messageInput = document.getElementById("messageinput");
+
+						// if user clicks "Send" button, send message
+						sendButton.addEventListener("click", sendMessage);
+
+						// if ENTER key was pressed, send message
+						window.addEventListener("keypress", function(event){
+							if (event.which === 13) {
+								sendMessage();
+							}
+						});
+
+						// when "chat" event received, display message
+						socket.on('chat', function(data){
+							console.log('RECEIVED: name: '+ data.name + ', message: ' + data.message);
+							displayNewMessage(data.name, data.message);
+						});
+
+
+						function sendMessage(event) {
+							console.log('SENDING: name: '+ nameInput.value + ', message: ' + messageInput.value);
+							socket.emit('chat', {name: nameInput.value, message: messageInput.value} );
+						}
+
+						function displayNewMessage (username, message) {
+							var newMessage = document.createElement('div');
+							newMessage.className = 'message';
+							var messageTextNode = document.createTextNode(': ' + message);
+
+							var newMessageUser = document.createElement('span');
+							newMessageUser.className = 'username';
+							newMessageUser.innerText = username;
+							newMessage.appendChild(newMessageUser);
+							newMessage.appendChild(messageTextNode);
+
+							document.getElementById('chat').appendChild(newMessage);
+
+							window.scrollTo(0,document.body.scrollHeight);
+						}
+					</code></pre>
+				</section>
+
+				<section>
+					<h1 style="font-size:1.6em;">Boilerplate for NodeJS/Express/Socket.IO</h1>
+					<div class="halves">
+						<h2>Client</h2>
+						<pre><code class="smaller" data-trim contenteditable="">
+							var socket = io();
+						</code></pre>
+					</div>
+
+					<div class="halves">
+						<h2>Server</h2>
+						<pre><code class="smaller" data-trim contenteditable="">
+							var express = require("express");
+							var app = express();
+							var http = require('http').Server(app);
+							var io = require('socket.io')(http);
+							var port = process.env.PORT || 8000;
+
+							app.use(express.static('public'));
+
+							http.listen(port, function(){
+								console.log('listening on ' + port);
+							});
+						</code></pre>
+					</div>
+				</section>
+
+				<section>
+					<h3>Do stuff when a user connects to server</h3>
+					<pre><code class="smaller" data-trim contenteditable="">
+						// Server code (after boilerplate)
+						io.on('connection', function(socket){
+
+							console.log('A user connected!');
+
+						});
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>Do something when a user disconnects from server</h3>
+					<pre><code class="smaller" data-trim contenteditable="">
+						// Server code (after boilerplate)
+						io.on('connection', function(socket){
+
+							socket.on('disconnect', function(msg){
+								console.log('A user disconnected.');
+							});
+
+						});
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>Do something when server recieves an event/message</h3>
+					<pre><code class="smaller" data-trim contenteditable="">
+						// Server code (after boilerplate)
+						io.on('connection', function(socket){
+
+							socket.on('event name here', function(data){
+								console.log('Message receieved!');
+							});
+
+						});
+					</code></pre>
+				</section>
+
+				<section>
+					<h1 style="font-size:1.6em;">Sending stuff from client to server</h1>
+					<div class="halves">
+						<h2>Client</h2>
+						<pre><code class="smaller" data-trim contenteditable="">
+							socket.emit('event name here',
+							'Sending a message! Or JSON data!'
+							);
+						</code></pre>
+					</div>
+
+					<div class="halves">
+						<h2>Server</h2>
+						<pre><code class="smaller" data-trim contenteditable="">
+							// Server code (after boilerplate)
+							io.on('connection', function(socket){
+
+								socket.on('event name here', function(data){
+									console.log('Message receieved!');
+								});
+
+							});
+						</code></pre>
+					</div>
+				</section>
+
+				<section>
+					<h1 style="font-size:1.6em;">Sending stuff from server to client(s)</h1>
+					<div class="halves">
+						<h2>Client</h2>
+						<pre><code class="smaller" data-trim contenteditable="">
+							socket.on('event name here ', function(data){
+								console.log('Message recieved: ' + data);
+							});
+						</code></pre>
+					</div>
+
+					<div class="halves">
+						<h2>Server</h2>
+						<pre><code class="smaller" data-trim contenteditable="">
+							// Server code (after boilerplate)
+							io.on('connection', function(socket){
+
+								// send to ALL clients
+								io.emit('event name here', 'Hi all!');
+
+							});
+						</code></pre>
+					</div>
+				</section>
+
+				<section>
+					<h2 style="margin-bottom:40px;">Let's run our app!</h2>
+					<p>To run our web server and see our app in action, go back to the command line and run this command:</p>
+
+					<pre style="margin:50px;"><code contenteditable="">node app.js</code></pre>
+
+					<p>This tells NodeJS to run our "app.js" file, which starts the web server and puts everything into action. If it works, you'll see a message in the command line that it's listening on port 8000.</p>
+				</section>
+
+				<section>
+					<h2 style="margin-bottom:40px;">Open the app in your web browser</h2>
+					<p>To connect to our local web server, open a new tab in your web browser and go to the following URL:</p>
+
+					<pre style="margin:50px;"><code contenteditable="">http://localhost:8000</code></pre>
+
+					<p>And you should see your app! Check the command line; if the connection is working, it will show the message "A user connected!"</p>
+
+					<p>Open the same URL in another browser tab and any messages you send will appear in both instances of your app. Cool, huh?</p>
+				</section>
+
+				<section>
+					<h1 class="big">Now let's publish it online with GitHub and Heroku!</h1>
+				</section>
+
+				<section>
+					<h2>The quick and dirty way to upload to GitHub:</h2>
+					<div class="halves">
+						<ol class="listspaces" style="margin-top:1.5em;">
+							<li>Log into GitHub and go to <a href="https://github.com/new">https://github.com/new</a></li>
+							<li>Name your new repo (the name doesn't matter)</li>
+							<li>Check the box next to "Initialize this repository with a README"</li>
+							<li>Click the green "Create repository" button</li>
+						</ol>
+					</div>
+					<div class="halves">
+						<img class="nomargin" src="images/github1.png">
+						<img class="nomargin" src="images/github2.png">
+					</div>
+				</section>
+
+				<section>
+
+					<ol start="5" style="display:block; margin:1.1em 0 0.7em 5.5em;">
+						<li>On your new repository page, click on "Upload Files"</li>
+					</ol>
+					<img class="nomargin" src="images/github3.png">
+				</section>
+
+				<section>
+
+					<ol start="6" style="display:block; margin:2em 0 1em 2em;">
+						<li>Drag and drop your project files from your local folder <strong><em>except for the "node_modules" folder</em></strong>, then click the green "Commit changes" button</li>
+					</ol>
+					<img src="images/github-dragdrop.gif">
+				</section>
+
+				<section>
+					<h2>Now let's publish it live on Heroku:</h2>
+					<ol class="listspaces" style="margin:0.6em 0;">
+						<li>Log into Heroku and go to <a href="https://dashboard.heroku.com/new">https://dashboard.heroku.com/new</a></li>
+						<li>Give your app a unique name and click "Create App"</li>
+					</ol>
+					<img class="nomargin" src="images/heroku2.png">
+				</section>
+
+				<section>
+
+					<ol start="3" class="listspaces" style="margin:0.6em 0;">
+						<li>Next to "Deployment Method", click on GitHub</li>
+					</ol>
+					<img class="nomargin" src="images/heroku3.png">
+				</section>
+
+				<section>
+
+					<ol start="4" class="listspaces" style="margin:0.6em 0;">
+						<li>Click "Connect to GitHub" at the bottom</li>
+						<li>Another window will open up; click "Authorize application" to link GitHub to Heroku</li>
+					</ol>
+					<img class="nomargin" src="images/heroku4.png">
+				</section>
+
+				<section>
+
+					<ol start="6" class="listspaces" style="margin:0.6em 0;">
+						<li>Next to "Connect to GitHub", search for the name of your GitHub respository</li>
+						<li>After a moment, when your repository name appears, click "Connect" to the right of it</li>
+					</ol>
+					<img class="nomargin" src="images/heroku5.png">
+				</section>
+
+				<section>
+
+					<ol start="8" class="listspaces" style="margin:0.6em 0;">
+						<li>Next to "Automatic Deploys", click "Enable Automatic Deploys" so that any future updates on GitHub will also update your app on Heroku</li>
+					</ol>
+					<img class="nomargin" src="images/heroku6.png">
+				</section>
+
+				<section>
+
+					<ol start="9" class="listspaces" style="margin:0.6em 0;">
+						<li>Almost done! Next to "Manual Deploy", click "Deploy Branch" to make your app run live on Heroku right now</li>
+					</ol>
+					<img class="nomargin" src="images/heroku7.png">
+				</section>
+
+				<section>
+
+					<ol start="10" class="listspaces" style="margin:0.6em 0;">
+						<li>Scroll to the bottom of the page and watch as it deploys your site to a live server (this might take a few minutes)</li>
+						<li>Click "View App" at the very bottom to open up your newly-published app and try it out</li>
+					</ol>
+					<img class="nomargin" src="images/heroku8.png">
+				</section>
+
+				<section>
+					<h2 class="big">Congratulations!</h2>
+					<h2 class="subhead">Share your first real-time interactive web app with the world!</h2>
+
+					<p style="margin-top:70px;"><strong>Now let's tinker with it!</strong>
+					Check out more in the SocketIO docs: <a href="http://socket.io/docs/">http://socket.io/docs/</a></p>
+				</section>
+
+			</div>
+		</div>
+
+		<footer class="branding">
+			<a class="button" href="https://github.com/LearnToCodeLA/chatdemo">Sample Code</a>
+			<a class="button" href="#">Slides</a>
+			<cite>By <a href="https://twitter.com/LearningNerd">Liz Krane</a> for <a href="http://www.meetup.com/LearnToCodeLA/">Learn to Code LA</a></cite>
+		</footer>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="/reveal.js"></script>
+
+		<script>
+		Reveal.initialize({
+			dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } }
+			]
+		});
+		</script>
+
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="/local.js"></script>
+	</body>
+	</html>
