@@ -48,6 +48,16 @@ io.on('connection', function(socket){
 			socket.broadcast.emit("slidechanged", msg);
 		});
 
+		// codecast-test1
+		socket.on("codecast1", function (msg) {
+			console.log('\n\nCODECAST:\n' + msg);
+			socket.broadcast.emit("codecast1", msg);
+		});
+		socket.on("codecast2", function (msg) {
+			console.log('\n\nCODECAST:\n' + msg);
+			socket.broadcast.emit("codecast2", msg);
+		});
+
 		socket.on('disconnect', function(msg){
 			console.log('Slide master disconnected!');
 		});

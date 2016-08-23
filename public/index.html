@@ -34,15 +34,13 @@
 			</section>
 
 			<section>
-				<h2>Demo 2 -- interactive canvas??</h2>
-			</section>
-
-			<section>
-				<h2>Demo 3 -- ??</h2>
-			</section>
-
-			<section>
-				<h2>screenshots / links to demos??</h2>
+				<h2 style="margin-bottom:25px;">More apps that use WebSockets</h2>
+				<ul>
+					<li><strong><a href="http://browserquest.mozilla.org/">BrowserQuest</a></strong> (<a href="https://github.com/mozilla/BrowserQuest">See code here</a>)</li>
+					<li><strong><a href="http://www.jamwithchrome.com/technology">JAM with Chrome</a></strong> (<a href="https://github.com/abrenaut/posio">See code here</a>)</li>
+					<li><strong><a href="https://posio.abrenaut.com/">A multiplayer geography game</a></strong></li>
+				</ul>
+				<a href="http://browserquest.mozilla.org/"><img style="margin-top:20px;" src="images/browserquest.jpg"></a>
 			</section>
 
 			<section>
@@ -119,24 +117,53 @@
 
 			<section>
 				<h2 class="subhead">Let's start with a refresher:</h2>
-				<h2 class="big">JavaScript in 5 Minutes</h2>
+				<h2 class="big">JavaScript in 15 Minutes</h2>
 			</section>
 
 			<section>
-				<h2>Make some variables, in web console...:</h2>
-				<pre><code id="variablestest" class="smaller" data-trim contenteditable="" style="height:450px;">
-// this will be javascript
-var myName = "Liz";
+				<h3 style="margin-bottom: 30px;">First, open your web browser's JavaScript console!</h3>
+				<ul>
+					<li><strong>Chrome:</strong> Ctrl + Shift + J or Cmd + Opt + J</li>
+					<li><strong>Safari:</strong> Cmd + Opt + C</kbd>
+						<ul><li>
+							<em>Note: first you may need to enable web inspector (<a href="https://developer.apple.com/library/mac/documentation/AppleApplications/Conceptual/Safari_Developer_Guide/GettingStarted/GettingStarted.html">see instructions here</a>)</em>
+						</ul></li>
+						</li>
+					<li><strong>Firefox:</strong> Ctrl + Shift + K or Cmd + Opt + K</kbd></li>
+				</ul>
 
+				<a href="http://jsforcats.com/"><img style="margin-top:20px;" src="images/console-js-ex.gif"></a>
+
+			</section>
+
+			<section>
+				<h2>Let's write some JavaScript together:</h2>
+				<pre><code id="codecast1" class="javascript smaller" data-trim contenteditable="" style="height:450px;">
+// This is a JavaScript comment, a line that starts with "//"
+// Comments are ignored by the computer when running your code.
+// They're great for making notes to yourself or your team!
 
 				</code></pre>
 			</section>
 
 			<section>
-				<h2>Make some variables!</h2>
-				<p data-height="450" data-theme-id="dark" data-slug-hash="ZONyjP" data-default-tab="js,result" data-user="LearnToCodeLA" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/LearnToCodeLA/pen/ZONyjP/">ZONyjP</a> by Learn to Code LA (<a href="http://codepen.io/LearnToCodeLA">@LearnToCodeLA</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-				<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+				<div class="halves" style="width: 75%">
+					<pre><code id="codecast2" class="javascript smaller" data-trim contenteditable="" style="height:450px;">
+// Now let's use JavaScript to interact with the HTML!
+
+// First try clicking on the button to the right    > > >
+// It doesn't do anything yet, but we'll fix that!
+
+					</code></pre>
+				</div>
+				<div class="halves" style="margin-top:90px;width: 25%;">
+					<button id="testbutton" style="font-size: 40px; padding: 20px;">Click me!</button>
+  					<p id="testdisplay" style="border: 2px solid black; font-size:30px; padding: 20px; margin-top: 40px;">
+						Display messages here
+					</p>
+				</div>
 			</section>
+
 
 			<section>
 				<h2 class="subhead">Now for the boring part:</h2>
@@ -221,183 +248,21 @@ var myName = "Liz";
 				<section>
 					<h2>package.json</h2>
 					<pre><code class="smaller" data-trim contenteditable="">
-						{
-							"name": "socket-chat-example",
-							"version": "0.0.1",
-							"description": "my first socket.io app",
-							"dependencies": {
-								"express": "^4.10.2",
-								"socket.io": "^1.4.8"
-							},
-							"engines": {
-								"node": "4.4.3"
-							},
-							"scripts": {
-								"start": "node app.js"
-							}
-						}
-					</code></pre>
-				</section>
-
-				<section>
-					<h2>app.js</h2>
-					<pre><code class="javascript smaller" data-trim contenteditable="">
-						var express = require("express");
-						var app = express();
-						var http = require('http').Server(app);
-						var io = require('socket.io')(http);
-						var port = process.env.PORT || 8000;
-
-						app.use(express.static('public'));
-
-						http.listen(port, function(){
-							console.log('listening on ' + port);
-						});
-
-						io.on('connection', function(socket){
-
-							console.log('A user connected!');
-
-							socket.on('chat', function(data){
-								console.log('CHAT: name: '+ data.name + ', message: ' + data.message);
-								io.emit('chat', data);
-							});
-
-							socket.on('disconnect', function(msg){
-								console.log('A user disconnected.');
-							});
-
-						});
-					</code></pre>
-				</section>
-
-
-				<section>
-					<div class="halves">
-						<h2>public/index.html</h2>
-						<pre><code class="smaller" data-trim contenteditable="">
-							&lt;!DOCTYPE html&gt;
-							&lt;html&gt;
-							&lt;head&gt;
-							&lt;title&gt;Simple Chat App Demo&lt;/title&gt;
-							&lt;meta charset=&quot;utf-8&quot;&gt;
-							&lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
-							&lt;/head&gt;
-
-							&lt;body&gt;
-
-							&lt;div id=&quot;chat&quot;&gt;
-							&lt;/div&gt;
-
-							&lt;div class=&quot;interface&quot;&gt;
-							&lt;input id=&quot;nameinput&quot; type=&quot;text&quot; value=&quot;Anonymous&quot; placeholder=&quot;Your Name&quot;&gt;&lt;input id=&quot;messageinput&quot; type=&quot;text&quot; placeholder=&quot;Write your message here&quot;&gt;&lt;button id=&quot;send&quot;&gt;Send&lt;/button&gt;
-							&lt;/div&gt;
-
-							&lt;script src=&quot;/socket.io/socket.io.js&quot;&gt;&lt;/script&gt;
-							&lt;script src=&quot;local.js&quot;&gt;&lt;/script&gt;
-
-							&lt;/body&gt;
-							&lt;/html&gt;
-						</code></pre>
-					</div>
-
-					<div class="halves">
-						<h2>public/style.css</h2>
-						<pre><code class="smaller" data-trim contenteditable="">
-							body {
-								font-size: 20px;
-							}
-							#chat {
-								margin-bottom: 1em;
-							}
-							.message {
-								padding: 0.5em;
-							}
-							.message:nth-child(even) {
-								background-color: #eee;
-							}
-							.message:last-child {
-								margin-bottom: 3.5em;
-							}
-							.username {
-								font-weight: bold;
-							}
-
-							.interface {
-								height: 3.5em;
-								position: fixed;
-								bottom: 0;
-								left: 0;
-								width: 100%;
-								padding: 10px;
-								box-sizing: border-box;
-								background: #fff;
-								box-shadow: 10px 10px 5px #888888;
-							}
-							input, button {
-								padding: .5em;
-								box-sizing: border-box;
-								font-size: 16px;
-							}
-							#nameinput {
-								width: 20%;
-							}
-							#messageinput {
-								width: 60%;
-							}
-							#send {
-								width: 20%;
-							}
-						</code></pre>
-					</div>
-				</section>
-
-				<section>
-					<h2>public/local.js</h2>
-					<pre><code class="javascript smaller" data-trim contenteditable="">
-						var socket = io();
-
-						var sendButton = document.getElementById("send");
-						var nameInput = document.getElementById("nameinput");
-						var messageInput = document.getElementById("messageinput");
-
-						// if user clicks "Send" button, send message
-						sendButton.addEventListener("click", sendMessage);
-
-						// if ENTER key was pressed, send message
-						window.addEventListener("keypress", function(event){
-							if (event.which === 13) {
-								sendMessage();
-							}
-						});
-
-						// when "chat" event received, display message
-						socket.on('chat', function(data){
-							console.log('RECEIVED: name: '+ data.name + ', message: ' + data.message);
-							displayNewMessage(data.name, data.message);
-						});
-
-
-						function sendMessage(event) {
-							console.log('SENDING: name: '+ nameInput.value + ', message: ' + messageInput.value);
-							socket.emit('chat', {name: nameInput.value, message: messageInput.value} );
-						}
-
-						function displayNewMessage (username, message) {
-							var newMessage = document.createElement('div');
-							newMessage.className = 'message';
-							var messageTextNode = document.createTextNode(': ' + message);
-
-							var newMessageUser = document.createElement('span');
-							newMessageUser.className = 'username';
-							newMessageUser.innerText = username;
-							newMessage.appendChild(newMessageUser);
-							newMessage.appendChild(messageTextNode);
-
-							document.getElementById('chat').appendChild(newMessage);
-
-							window.scrollTo(0,document.body.scrollHeight);
-						}
+{
+	"name": "socket-chat-example",
+	"version": "0.0.1",
+	"description": "my first socket.io app",
+	"dependencies": {
+		"express": "^4.10.2",
+		"socket.io": "^1.4.8"
+	},
+	"engines": {
+		"node": "4.4.3"
+	},
+	"scripts": {
+		"start": "node app.js"
+	}
+}
 					</code></pre>
 				</section>
 
@@ -406,24 +271,24 @@ var myName = "Liz";
 					<div class="halves">
 						<h2>Client</h2>
 						<pre><code class="smaller" data-trim contenteditable="">
-							var socket = io();
+var socket = io();
 						</code></pre>
 					</div>
 
 					<div class="halves">
 						<h2>Server</h2>
 						<pre><code class="smaller" data-trim contenteditable="">
-							var express = require("express");
-							var app = express();
-							var http = require('http').Server(app);
-							var io = require('socket.io')(http);
-							var port = process.env.PORT || 8000;
+var express = require("express");
+var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+var port = process.env.PORT || 8000;
 
-							app.use(express.static('public'));
+app.use(express.static('public'));
 
-							http.listen(port, function(){
-								console.log('listening on ' + port);
-							});
+http.listen(port, function(){
+	console.log('listening on ' + port);
+});
 						</code></pre>
 					</div>
 				</section>
@@ -431,40 +296,12 @@ var myName = "Liz";
 				<section>
 					<h3>Do stuff when a user connects to server</h3>
 					<pre><code class="smaller" data-trim contenteditable="">
-						// Server code (after boilerplate)
-						io.on('connection', function(socket){
+// Server code (after boilerplate)
+io.on('connection', function(socket){
 
-							console.log('A user connected!');
+	console.log('A user connected!');
 
-						});
-					</code></pre>
-				</section>
-
-				<section>
-					<h3>Do something when a user disconnects from server</h3>
-					<pre><code class="smaller" data-trim contenteditable="">
-						// Server code (after boilerplate)
-						io.on('connection', function(socket){
-
-							socket.on('disconnect', function(msg){
-								console.log('A user disconnected.');
-							});
-
-						});
-					</code></pre>
-				</section>
-
-				<section>
-					<h3>Do something when server recieves an event/message</h3>
-					<pre><code class="smaller" data-trim contenteditable="">
-						// Server code (after boilerplate)
-						io.on('connection', function(socket){
-
-							socket.on('event name here', function(data){
-								console.log('Message receieved!');
-							});
-
-						});
+});
 					</code></pre>
 				</section>
 
@@ -473,23 +310,23 @@ var myName = "Liz";
 					<div class="halves">
 						<h2>Client</h2>
 						<pre><code class="smaller" data-trim contenteditable="">
-							socket.emit('event name here',
-							'Sending a message! Or JSON data!'
-							);
+socket.emit('event name here',
+'Sending a message! Or JSON data!'
+);
 						</code></pre>
 					</div>
 
 					<div class="halves">
 						<h2>Server</h2>
 						<pre><code class="smaller" data-trim contenteditable="">
-							// Server code (after boilerplate)
-							io.on('connection', function(socket){
+// Server code (after boilerplate)
+io.on('connection', function(socket){
 
-								socket.on('event name here', function(data){
-									console.log('Message receieved!');
-								});
+	socket.on('event name here', function(data){
+		console.log('Message receieved!');
+	});
 
-							});
+});
 						</code></pre>
 					</div>
 				</section>
@@ -499,22 +336,22 @@ var myName = "Liz";
 					<div class="halves">
 						<h2>Client</h2>
 						<pre><code class="smaller" data-trim contenteditable="">
-							socket.on('event name here ', function(data){
-								console.log('Message recieved: ' + data);
-							});
+socket.on('event name here ', function(data){
+	console.log('Message recieved: ' + data);
+});
 						</code></pre>
 					</div>
 
 					<div class="halves">
 						<h2>Server</h2>
 						<pre><code class="smaller" data-trim contenteditable="">
-							// Server code (after boilerplate)
-							io.on('connection', function(socket){
+// Server code (after boilerplate)
+io.on('connection', function(socket){
 
-								// send to ALL clients
-								io.emit('event name here', 'Hi all!');
+	// send to ALL clients
+	io.emit('event name here', 'Hi all!');
 
-							});
+});
 						</code></pre>
 					</div>
 				</section>
