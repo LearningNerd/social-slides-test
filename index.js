@@ -82,6 +82,16 @@ io.on('connection', function(socket){
 		io.emit('move it', data);
 	});
 
+	// PAINT DEMO
+	socket.on('mousedown', function(data){
+		console.log(data);
+		socket.broadcast.emit('mousedown', data);
+	});
+	socket.on('mousemove', function(data){
+		console.log(data);
+		socket.broadcast.emit('mousemove', data);
+	});
+
 }); // end of io.on('connection' ...
 
 // Server, listen up!

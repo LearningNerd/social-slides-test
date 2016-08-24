@@ -1,3 +1,33 @@
+Next time I should cut out the GitHub/Heroku stuff altogether or just have it there for people to follow along on their own; but there's no sense in walking people through step by step for those parts! I could just give them a screencast video to watch before or after the class, or a printed-out worksheet even!
+
+Nobody wants to hear me talk about code that's up on projector, especially if they have other things right in front of them that are more compelling and immediate. All code walkthroughs should be interactive!
+
+I need to emphasize building the application from the ground up, showing it getting progressively more interesting and real step-by-step and customizing it so they can take ownership of the code
+
+I need to talk about websockets and client-server stuff more, and make that diagram I had in mind of two talking heads, both sending and receiving information, and mapping socket.io functions to ears and mouths
+
+I need to remember to introduce myself at the beginning, and to tell people that we meet weekly, and that they can join our Slack chat, and to donate moneyz
+
+These workshops should increasingly become more of just one part of a larger array of content and tools that I'm making!
+
+If we have time I would LOVE to show off more than just that one chat demo!
+
+Print out pieces of paper with instructions like wifi info and link to the slides!
+
+GROUP GOOGLING - assign everyone or every table a topic to google and see what they find
+
+MUST have everyone actually create the app, write socket.io code, from the ground up, or at least on top of a typical boilerplate
+
+Note that NO SECURITY whatsoever!
+
+tell them about Nodemon!!! maybe install it!
+
+save static slides somewhere more permanent and update the "slides" permalink at the bottom of my dynamic slides
+
+make a slide about node, about express, about SocketIO
+
+make a slide about websockets, telegraph vs telephone, and client/server stuff
+
 # NOTES
 
 ## HOW TO OPEN THE CONSOLE
