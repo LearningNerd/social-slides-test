@@ -1,9 +1,78 @@
 # NOTES -- PAINTING DEMO CODE
 
+## ORDER OF SLIDE CONTENT
+1) Install/setup as soon as people arrive, or beforehand via email instructions!
+******FIRST SOMETHING HANDS ON !!!
+2) Overview of web sockets, servers, our apps logic
+3) JS refresher - like 5 min, rely mostly on cheat sheet provided to everyone
+4) ConsoleLOG using SocketIO to send/receive messages
+5) Super quick canvas tutorial
+6) Build out the app
+7) IF TIME: build features, people vote on which?
+8) IF TIME: push to GitHub and Heroku!
+
+## MEDIA / ASSETS LIST
+
+### CODE
+- Finished code fr painting app inside a slide, looking nice!
+- Collaborative drawing game by writing canvas code into a box
+- A mini timer app inside the slides that only I can start/stop ??
+- Group voting app, so people can vote on what feature to build next?
+
+### DIAGRAMS
+- Client / server / HTTP basics diagram ?
+- Web Sockets diagram - telegraph vs telephone
+	- client and server listening and talking at the same time
+	- mapping the listening and talking to SocketIO commands
+- Diagram showing the steps that happen in our app
+- Diagram or GIF showing how canvas works:
+	- coordinate system
+	- the four steps to draw a line
+- GIF showing browser console?
+- The three parts to addEventListener
+- GIF showing our final working app, to put in static slides
+- GIF showing console.log in browser and in command line
+- GIF showing running a node.js app, opening it in the browser ?
+- A slide on 1) NodeJs, 2) Express, 3) WebSockets, 4) SocketIO ??
+
+### ORGANIZATIONAL CONTENT stuff
+- Outline f content shared on the meetup page and sent out to everyone who RSVPed!!
+- A way to get peoples emails...
+- Interest form for the waitlist people to notify them for next time
+- New sample code repo on GitHub, paintdemo -- branches, different versions, starter code and finished code
+- Static version of slides to bookmark
+- Extra resources list, ideally on our meetup website!
+- A separate JavaScript quick sheet, either printed out or separate link (on meetup website!)
+	- variables, functions, if/else, some common JS functions, objects and object literal notation, SocketIO, etc...
+- A separate command line cheat sheet
+- NodeJS and NPM cheat sheet ?
+
+## PRE WORKSHOP PLAN
+- PRINTED on paper:
+	- WiFi info
+	- link to slides
+- INSTALLATION INSTRUCTIONS TO START RIGHT AWAY
+	- OPTIONS: a) email it to people beforehand?, 1) print it out, 2) keep as slides, 3) separate slides, 4) IDEAL: general tutorial article and/or video on LTCLA website!
+	- ****** INSTALL NODEMON AT BEGINNING TOO ******
+- first 30 min: installation, walk around and meet people, play browserquest etc
+- 7pm: INFO / WELCOME MESSAGES
+	- Introduce myself, my name, the meetup group
+	- Mention our weekly meetup
+	- Tip jar, say what $ we need to raise
+	- Join us, food/drinks tonight across the street!
+	- Show Slack / link
+	- Bathrooms upstairs, kitchen and water
+	- Big thanks to Opodz
+	- Free day pass, tell them we sent you!
+	- my spiel on goals of the class:
+		- interrupt me w questions anytime, no such thing as a dumb question
+		- but if you feel a little confused or frustrated, thats GOOD, means youre learning!
+		- hopefully will inspire many new questions, and we can answer a few of them!
+		- practice every day and share links w us on slack on what youre up to!
+/* ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ */
+
 // IDEA list:
  	// extend with libraries like http://fabricjs.com/
-	// HAVE PEOPLE INSTALL NODEJS AND NPM DEPENDENCIES AS SOON AS THEY SIT DOWN!!
-	// include in written instructions?? point link to a separate section of slides? static slides?
 
 // XXX: EXTRA LINKS:
 	// good canvas tutorial: https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial
@@ -13,10 +82,10 @@
 .... VARIABLES
 .... STRING CONCATENATION
 .... FUNCTIONS
-.... CONDITIONAL STATEMENTS AND OPERATORS
+.... CONDITIONAL STATEMENTS AND OPERATORS ??
 .... CUSTOM FUNCTIONS
 .... EVENT LISTENERS
-... NEED TO INTRODUCE OBJECTS, DOT NOTATION, AND OBJECT LITERALS VERY BRIEFLY !!!
+.... NEED TO INTRODUCE OBJECTS, DOT NOTATION, AND OBJECT LITERALS VERY BRIEFLY !!!
 
 
 ## CANVAS INTRO
@@ -154,7 +223,7 @@ if (event.buttons) {
 // XXX WebSockets / two-way conversation diagram showing mouths and ears on client and server
 	// mouth: socket.emit('event name here', data);
 	// ear: socket.on('event name here', myCoolFunction);
-	// NOTE the object literal nortation in socket.emit -- a way to group multiple variables together, all wrapped up in a pretty container with a bow on top!
+	// NOTE the object literal notation in socket.emit -- a way to group multiple variables together, all wrapped up in a pretty container with a bow on top!
 	// NOTE that myCoolFunction receives a special parameter/variable that contains the data we send in socket.enit, similar to addEventListener custom functions
 
 // XXX DIAGRAM on what needs to happen in our app:
@@ -197,7 +266,7 @@ var socket = io();
 
 /// XXX Now let's have the server send a message to the new client that just connected:
 	// in app.js:
-socket.emit('test', "Hi there! I'll be your server this evening. I recommend the lobster bisque. Let me know if you're ready to order.");
+socket.emit('test', "Hi there! I'll be your server this evening. I recommend the lobster bisque.");
 
 	// in local.js:
 socket.on('test', function(data){
@@ -222,7 +291,7 @@ socket.on('test', function(data){
 
 
 // XXX Now let's have the server send a message to EVERY client:
-io.emit('test', "Attention everybody! Someone new just joined our party!");
+io.emit('test', "Attention everybody! Someone new just joined our party! Welcome, new client!");
 
 // XXX And finally, have the server send a message to every client EXCEPT the client that just connected:
 socket.broadcast.emit('test', "Hey friends, don't tell the new guy I said this, but he's really bad at JavaScript so watch your backs!");
