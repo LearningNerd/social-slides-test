@@ -32,10 +32,11 @@ io.on('connection', function(socket){
 
 	// Parse and validate cookie
 	var parsedCookies = cookie.parse(socket.handshake.headers.cookie)
-	var signedcookie = cookieParser.signedCookie (parsedCookies['yummycookie'], 'secretive secret cookie keyyyy');
+	var signedcookie = cookieParser.signedCookie(parsedCookies['yummycookie'], 'secretive secret cookie keyyyy');
 	console.log('signed cookie value: ', signedcookie);
 
 	// Only grant slidemaster privileges if client sent valid cookie
+	// TODO: understand how this works -- I think I'm doing it wrong, lolz
 	if (parsedCookies['yummycookie'] !== signedcookie) {
 
 		// signal to client to set "slidechanged" listeners
@@ -44,17 +45,17 @@ io.on('connection', function(socket){
 
 		// Allow this client to broadcast to other clients
 		socket.on("slidechanged", function (msg) {
-			console.log('Slide master changed slide! Now broadcasting to users.')
+			//console.log('Slide master changed slide! Now broadcasting to users.')
 			socket.broadcast.emit("slidechanged", msg);
 		});
 
 		// codecast-test1
 		socket.on("codecast1", function (msg) {
-			console.log('\n\nCODECAST:\n' + msg);
+			//console.log('\n\nCODECAST:\n' + msg);
 			socket.broadcast.emit("codecast1", msg);
 		});
 		socket.on("codecast2", function (msg) {
-			console.log('\n\nCODECAST:\n' + msg);
+			//console.log('\n\nCODECAST:\n' + msg);
 			socket.broadcast.emit("codecast2", msg);
 		});
 
@@ -71,24 +72,30 @@ io.on('connection', function(socket){
 
 	// CHAT-DEMO
 	socket.on('chat', function(data){
-		console.log('CHAT: name: '+ data.name + ', message: ' + data.message);
+		//console.log('CHAT: name: '+ data.name + ', message: ' + data.message);
 		io.emit('chat', data);
 	});
 
 
 	// TEST1
 	socket.on('move it', function(data){
-		console.log(data);
+		//console.log(data);
 		io.emit('move it', data);
 	});
 
 	// PAINT DEMO
-	socket.on('mousedown', function(data){
+	socket.on('new line', function(data){
 		console.log(data);
+		socket.broadcast.emit('new line', data);
+	});
+
+	// BROKEN PAINT DEMO
+	socket.on('mousedown', function(data){
+		//console.log(data);
 		socket.broadcast.emit('mousedown', data);
 	});
 	socket.on('mousemove', function(data){
-		console.log(data);
+		//console.log(data);
 		socket.broadcast.emit('mousemove', data);
 	});
 

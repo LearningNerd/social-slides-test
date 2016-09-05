@@ -154,7 +154,7 @@ body {
   margin: 0;
 }
 
-.reveal iframe {
+.reveal iframe, .reveal canvas {
   border: 1px solid #ddd;
   width: 100%;
   box-sizing: border-box;

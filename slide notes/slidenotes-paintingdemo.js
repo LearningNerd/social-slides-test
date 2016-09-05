@@ -64,6 +64,7 @@
 	- Bathrooms upstairs, kitchen and water
 	- Big thanks to Opodz
 	- Free day pass, tell them we sent you!
+	- afterwards, help me put chairs away
 	- my spiel on goals of the class:
 		- interrupt me w questions anytime, no such thing as a dumb question
 		- but if you feel a little confused or frustrated, thats GOOD, means youre learning!
