@@ -31,13 +31,13 @@ function drawStuff(event) {
 		pen.stroke();
 
 		console.log("From: " + prevX + ", " + prevY + " To: " + event.clientX + ", " + event.clientY);
-		
+
 		lastSent = Date.now();
-		
+
 		socket.emit('new line', {fromX: prevX, fromY: prevY, toX: event.clientX, toY: event.clientY});
-		
+
 		prevX = event.clientX;
-		prevY = event.clientY;	
+		prevY = event.clientY;
 	}
 }
 

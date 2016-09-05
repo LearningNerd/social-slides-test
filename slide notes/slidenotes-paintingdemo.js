@@ -54,7 +54,24 @@
 - INSTALLATION INSTRUCTIONS TO START RIGHT AWAY
 	- OPTIONS: a) email it to people beforehand?, 1) print it out, 2) keep as slides, 3) separate slides, 4) IDEAL: general tutorial article and/or video on LTCLA website!
 	- ****** INSTALL NODEMON AT BEGINNING TOO ******
+
+
 - first 30 min: installation, walk around and meet people, play browserquest etc
+
+/* ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ */
+
+// IDEA list:
+ 	// extend with libraries like http://fabricjs.com/
+
+// XXX: EXTRA LINKS:
+	// good canvas tutorial: https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial
+
+## INTRO TO JS??
+
+
+/* ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ */
+/* ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ */
+
 - 7pm: INFO / WELCOME MESSAGES
 	- Introduce myself, my name, the meetup group
 	- Mention our weekly meetup
@@ -70,35 +87,69 @@
 		- but if you feel a little confused or frustrated, thats GOOD, means youre learning!
 		- hopefully will inspire many new questions, and we can answer a few of them!
 		- practice every day and share links w us on slack on what youre up to!
-/* ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ */
 
-// IDEA list:
- 	// extend with libraries like http://fabricjs.com/
 
-// XXX: EXTRA LINKS:
-	// good canvas tutorial: https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial
+## STARTER
 
-## INTRO TO JS??
+boilerplate code for web and webscoket server, html and css
 
-.... VARIABLES
-.... STRING CONCATENATION
-.... FUNCTIONS
-.... CONDITIONAL STATEMENTS AND OPERATORS ??
-.... CUSTOM FUNCTIONS
-.... EVENT LISTENERS
-.... NEED TO INTRODUCE OBJECTS, DOT NOTATION, AND OBJECT LITERALS VERY BRIEFLY !!!
+## SENDING MESSAGES BACK AND FORTH
+
+// send information!!		socket.emit('event name here', data);
+// receive information!!	socket.on('event name here', myCoolFunction);
+// NOTE that myCoolFunction receives a special parameter/variable that contains the data we send in socket.emit
+
+
+// NOTE that now you have TWO consoles to worry about: the web browser for client-side, and command line for server-side
+
+// XXX in app.js, change to look like:
+io.on('connection', function(socket){
+	console.log('A user connected!');
+
+	io.emit('test', "Hi there! I'll be your server this evening. I recommend the lobster bisque.");
+
+	socket.on('test', function(data){
+		console.log(data);
+	});
+});
+// NOTE that the server-side code goes inside the connection event, which is what gives us access to the socket object!
+
+// XXX in local.js:
+socket.emit('test', "Hi, server! Do you have any chocolate cake?");
+
+socket.on('test', function(data){
+	console.log(data);
+});
+
+// XXX Test this out with a couple of tabs open: notice how only the client that just connected recieves the message!
+// XXX Be sure to check the console in the browser and in command line!
+
+
+// XXX Now let's have the server reply to just one client:
+// in app.js:
+io.on('connection', function(socket){
+	console.log('A user connected!');
+
+	io.emit('test', "Hi there! I'll be your server this evening. I recommend the lobster bisque.");
+
+	socket.on('test', function(data){
+		console.log(data);
+
+		socket.emit('test', "Nope, no chocolate cake here. I ate it all, sorry!");
+	});
+});
+
+// XXX And finally, have the server send a message to every client EXCEPT the client that just connected:
+*** inside io.on('connection' ... ****:
+socket.broadcast.emit('test', "Don't tell the new guy I said this, but he's really bad at JavaScript so watch out!");
 
 
 ## CANVAS INTRO
 
-// boilerplate for working with the canvas element:
-	// make a variable pointing to the canvas
+// Make a variable pointing to the canvas
 var canvas = document.getElementById('mycanvas');
-	// get access to its built-in 2d drawing function:
-	// https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext
-	// https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
+// Get access to its built-in 2d drawing function:
 var pen = canvas.getContext('2d');
-
 
 // Now let's draw something!
 
@@ -117,27 +168,28 @@ lineTo
 stroke	// https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/stroke
 	// IMPORTANT NOTE: stroke(path) to specify which path to stroke! important for multiuser
 
-// XXX collaborative drawing app that renders everyone's CODE
-// like how they do it here: https://codepen.io/LearnToCodeLA/pen/AXkGPw
-// *** have everyone draw a line -- either all at once, or turn-based!
+// XXX Let's draw a line!
+pen.beginPath();		// Initialize
+pen.moveTo(0,0);		// Choose starting coordinates (top left corner of canvas)
+pen.lineTo(500,500);	// Choose ending coordinates (500 pixels from top, 500 pixels from left)
+pen.stroke();			// Draw the line
 
-// XXX Add Color!
 
-pen.strokeStyle = red;
+// XXX Add Color! *** OPTIONAL
+pen.strokeStyle = red; ***before the line
 
 // NOTE that you can use hex colors
-// XXX group googling session: how to generate a random color!
+// XXX IF TIME, group googling session: how to generate a random color!
 // https://css-tricks.com/examples/RandomHexColor/
+
 
 ## MOUSE EVENTS!!!!
 
 // XXX So now how do we draw a line using our mouse instead of writing lots of code?
 // JavaScript has a nice built-in function that lets us do stuff based on user input events like mouse clicks etc
 
-// XXX Diagram (or I could just draw live in a canvas) detailing exactly what we want:
-	// I want to be able to click and hold down my mouse button and move my mouse around the screen to draw, and let go of the mouse button to stop drawing
-
-// XXX show the three types of events that we need: when the mouse button is pressed down, when the mouse moves, and when the mouse button is released
+// XXX show the three types of events that we need: when the mouse button is pressed down, when the mouse moves,
+// and when the mouse button is released
 
 // XXX addEventListener 	-- has three parts:
 	// 1. the object on the web page where the event takes place -- in this case, our canvas element
@@ -189,7 +241,6 @@ function startDrawing(event) {
 }
 
 
-
 // XXX Our other two events contain the exact same information, so we can double check that they all work:
 function startDrawing(event) {
 	console.log("Start: " + event.clientX + ", " + event.clientY);
@@ -211,97 +262,17 @@ function stopDrawing(event) {
 // XXX So some people got it working where it draws a line, but only after you finish drawing it...
 // XXX Let's look up MouseEvent on MDN to see if any other info here helps us... look at the buttons property!
 
-// XXX Let's refactor the code!! use the buttons property to check if a button is being held to draw the stroke as the mouse is moving:
-if (event.buttons) {
+// XXX Let's refactor the code!!
+....
+if (isDrawing) {
 	pen.stroke();
 }
-// Now we don't actually need the mouseup event listener or the stopDrawing function, so we can delete that code!
-// Alternatively you could just set your own variable to check for the state of the mouse!
+...
 
+### SENDING INFORMATION ON EVENTS
 
-## SOCKETIO MAGIC FOR REAL-TIME INTERACTION!!!
-
-// XXX WebSockets / two-way conversation diagram showing mouths and ears on client and server
-	// mouth: socket.emit('event name here', data);
-	// ear: socket.on('event name here', myCoolFunction);
-	// NOTE the object literal notation in socket.emit -- a way to group multiple variables together, all wrapped up in a pretty container with a bow on top!
-	// NOTE that myCoolFunction receives a special parameter/variable that contains the data we send in socket.enit, similar to addEventListener custom functions
-
-// XXX DIAGRAM on what needs to happen in our app:
-	// 1. when each client moves their mouse, A) draw it on the screen using our existing code, and B) send that mouse data to the server
-	// 2. when server recieves mouse data from a particular client, send that data to every OTHER client (except the one who sent it)
-	// 3. when client recieves data from the server, draw lines based on the data recieved
-
-// XXX First let's try making the simplest possible test: send console.log messages to each other, no drawing yet
-	// even to do something that simple will require a few moving parts!
-	// 1. we need a web server, first of all!
-	// 2. we need to enaable SocketIO on the web server so clients can connect to it using websockets
-	// 3. we need to enable SocketIO on all the clients
-	// 4. we need both the client and the server to send and receive messages
-
-
-### CONNECTING THE WEB SERVER AND CLIENT USING SOCKETIO, SENDING TEST MESSAGES
-
-// XXX In app.js, quick run-down of the boilerplate code
-// XXX Run "node app.js" and open localhost:8000 to view the index page and check the console in terminal
-	// NOTE that now you have TWO consoles to worry about: the web browser for client-side, and command line for server-side
-
-// XXX in app.js:
-io.on('connection', function(socket){
-	console.log('A user connected!');
-});
-
-	// NOTE could also be written as io.on('connection, myFunctionHere') ...
-
-// XXX Next, the boilerplate on the client side to connect:
-	// make a connection to our server using SocketIO, make a variable that gives us access to the built-in SocketIO fuunctions
-var socket = io();
-
-// XXX RESTART the server -- Ctrl + C to turn it off, then "node app.js" again to turn it back on
-// XXX Refresh the page and now check your command line -- you should see your message that a user connected!
-// XXX Open up a second tab -- or three or four or twenty -- and you'll see a message for each one, multiple users!
-
-
-// XXX (IF THERE'S TIME, HAVE EVERYONE INSTALL NODEMON)
-
-
-/// XXX Now let's have the server send a message to the new client that just connected:
-	// in app.js:
-socket.emit('test', "Hi there! I'll be your server this evening. I recommend the lobster bisque.");
-
-	// in local.js:
-socket.on('test', function(data){
-	console.log(data);
-});
-	// Any time the client receives an event called "test" it will run this code, displaying data in the web browser's console
-
-// XXX Test this out with a couple of tabs open: notice how only the client that just connected recieves the message!
-
-
-// XXX Now to have each client send a message back to the server, it's the reverse:
-	// in local.js:
-socket.emit('test', "Hi, server! Do you have any chocolate cake?");
-
-	// in app.js:
-socket.on('test', function(data){
-	console.log(data);
-});
-	// NOTE that the server-side code goes inside the connection event, which is what gives us access to the socket object!
-
-// XXX Test this out, be sure to check the console in the browser and in command line!
-
-
-// XXX Now let's have the server send a message to EVERY client:
-io.emit('test', "Attention everybody! Someone new just joined our party! Welcome, new client!");
-
-// XXX And finally, have the server send a message to every client EXCEPT the client that just connected:
-socket.broadcast.emit('test', "Hey friends, don't tell the new guy I said this, but he's really bad at JavaScript so watch your backs!");
-
-
-### SENDING INFORMATION ..
-
-// XXX CHALLENGE: Using these building blocks, change your app to send two messages
-	// from client to server about what the client is doing with their mouse, one message for each mouse event (mousedown and mousemove)
+// XXX CHALLENGE: Using these building blocks, change your app to send a message
+	// from client to server about what the client is doing with their mouse
 	// and have the server recieve the data and show it in the console
 
 // SOLUTION:
@@ -331,10 +302,9 @@ socket.on('mousemove', function(data){
 
 
 // XXX Now to send our x and y coordinates as separate numbers ...we'll send them as an object!
-// NOTE that we need to send THREE pieces of information for mousemove: x, y, and buttons !
 socket.emit('mousedown', {x: event.clientX, y: event.clientY});
 // and:
-socket.emit('mousemove', {x: event.clientX, y: event.clientY, buttons: event.buttons});
+socket.emit('mousemove', {x: event.clientX, y: event.clientY});
 
 
 
@@ -363,6 +333,7 @@ socket.on('mousemove', function(data){
 
 // XXX NOW FOR THE GRAND FINALE!!!  *** CHALLENGE *** Let's draw a line on the client when it receives the data from the server:
 // SOLUTION:
+var isDrawing = false; // local code.... see paintdemo-broken!!!!
 socket.on('mousedown', function(data){
 	console.log(data);
 	pen.beginPath();
@@ -371,9 +342,10 @@ socket.on('mousedown', function(data){
 socket.on('mousemove', function(data){
 	console.log(data);
 	pen.lineTo(data.x, data.y);
-	if (data.buttons) {
+	if (isDrawing) {
 		pen.stroke();
 	}
 });
+
 
 // XXX BONUS CHALLENGE: Assign a random color to the lines drawn by each separate user!

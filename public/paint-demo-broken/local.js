@@ -5,12 +5,15 @@ var socket = io();
 var canvas = document.getElementById('mycanvas');
 var pen = canvas.getContext('2d');
 
+var isDrawing = false;
+
 canvas.addEventListener('mousedown', startDrawing);
 canvas.addEventListener('mousemove', drawStuff);
-//canvas.addEventListener('mouseup', stopDrawing);
+canvas.addEventListener('mouseup', stopDrawing);
 
 function startDrawing(event) {
 	console.log("Start: " + event.clientX + ", " + event.clientY);
+	isDrawing = true;
 	pen.beginPath();
 	pen.moveTo(event.clientX, event.clientY );
 	socket.emit('mousedown', {x: event.clientX, y: event.clientY});
@@ -19,10 +22,15 @@ function startDrawing(event) {
 function drawStuff(event) {
 	console.log("Move: " + event.clientX + ", " + event.clientY);
 	pen.lineTo(event.clientX, event.clientY);
-	if (event.buttons) {
+	if (isDrawing) {
 		pen.stroke();
+		socket.emit('mousemove', {x: event.clientX, y: event.clientY, buttons: event.buttons});
 	}
-	socket.emit('mousemove', {x: event.clientX, y: event.clientY, buttons: event.buttons});
+}
+
+function stopDrawing(event) {
+	console.log("Stop: " + event.clientX + ", " + event.clientY);
+	isDrawing = false;
 }
 
 // function stopDrawing(event) {
@@ -39,7 +47,5 @@ socket.on('mousedown', function(data){
 socket.on('mousemove', function(data){
 	console.log(data);
 	pen.lineTo(data.x, data.y);
-	if (data.buttons) {
-		pen.stroke();
-	}
+	pen.stroke();
 });

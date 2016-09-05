@@ -8,8 +8,8 @@ var socket = io();
 
 
 // codecast-test1:
-var codecast1 = document.getElementById("codecast1");
-var codecast2 = document.getElementById("codecast2");
+//var codecast1 = document.getElementById("codecast1");
+//var codecast2 = document.getElementById("codecast2");
 
 
 // Set event listeners only if granted slidemaster privileges
@@ -36,8 +36,8 @@ socket.on('new master', function (msg) {
 		socket.emit('codecast2', codecast2.innerText);
 	}
 
-	codecast1.addEventListener("keyup", codeCast1);
-	codecast2.addEventListener("keyup", codeCast2);
+	//codecast1.addEventListener("keyup", codeCast1);
+	//codecast2.addEventListener("keyup", codeCast2);
 });
 
 // If "slidechanged" event received from server, update view
