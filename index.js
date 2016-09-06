@@ -31,7 +31,7 @@ io.on('connection', function(socket){
 	console.log('\nA user connected!');
 
 	// Parse and validate cookie
-	var parsedCookies = cookie.parse(socket.handshake.headers.cookie)
+	var parsedCookies = cookie.parse(socket.handshake.headers.cookie || 'NONE!')
 	var signedcookie = cookieParser.signedCookie(parsedCookies['yummycookie'], 'secretive secret cookie keyyyy');
 	console.log('signed cookie value: ', signedcookie);
 
