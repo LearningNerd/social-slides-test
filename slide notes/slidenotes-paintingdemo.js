@@ -68,6 +68,10 @@
 
 ## INTRO TO JS??
 
+*** NOTES FROM 9/5:
+- update instructions to work for people who use git clone also!!!
+- remember to close and reopn console after installing NodeJS
+- windows may have to edit the path, add environment variables
 
 /* ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ */
 /* ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ */
@@ -78,20 +82,21 @@
 	- Tip jar, say what $ we need to raise
 	- Join us, food/drinks tonight across the street!
 	- Show Slack / link
-	- Bathrooms upstairs, kitchen and water
+	- 2 Bathrooms upstairs
 	- Big thanks to Opodz
 	- Free day pass, tell them we sent you!
-	- afterwards, help me put chairs away
+	- afterwards, help me put chairs and paintings away
 	- my spiel on goals of the class:
+		- if you feel a little confused or frustrated, thats GOOD, means youre learning!
 		- interrupt me w questions anytime, no such thing as a dumb question
-		- but if you feel a little confused or frustrated, thats GOOD, means youre learning!
+			- but in the interest of saving time I might not answer it til the end
 		- hopefully will inspire many new questions, and we can answer a few of them!
 		- practice every day and share links w us on slack on what youre up to!
 
 
 ## STARTER
 
-boilerplate code for web and webscoket server, html and css
+boilerplate code for web and websocket server, html and css
 
 ## SENDING MESSAGES BACK AND FORTH
 
@@ -257,12 +262,14 @@ function stopDrawing(event) {
 
 // XXX Now, time to put all these pieces together, so here's a little challenge:
 // Let's set a timer for 5 minutes, and see if you can combine the code we have so far to make it draw wherever you move your mouse!
-	// HINTS: there are only four drawing functions required to draw a line, and only 3 functions that run for the 3 events, so try every combination!
+	// HINTS: there are only four drawing functions required to draw a line, and only 3 functions
+	// that run for the 3 events, so try every combination!
+
+... timer ...
 
 // XXX So some people got it working where it draws a line, but only after you finish drawing it...
-// XXX Let's look up MouseEvent on MDN to see if any other info here helps us... look at the buttons property!
+// XXX Here's one way to get it to draw in real time:
 
-// XXX Let's refactor the code!!
 ....
 if (isDrawing) {
 	pen.stroke();
