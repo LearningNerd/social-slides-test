@@ -36,7 +36,6 @@ io.on('connection', function(socket){
 	console.log('signed cookie value: ', signedcookie);
 
 	// Only grant slidemaster privileges if client sent valid cookie
-	// TODO: understand how this works -- I think I'm doing it wrong, lolz
 	if (parsedCookies['yummycookie'] !== signedcookie) {
 
 		// signal to client to set "slidechanged" listeners
@@ -49,16 +48,6 @@ io.on('connection', function(socket){
 			socket.broadcast.emit("slidechanged", msg);
 		});
 
-		// codecast-test1
-		socket.on("codecast1", function (msg) {
-			//console.log('\n\nCODECAST:\n' + msg);
-			socket.broadcast.emit("codecast1", msg);
-		});
-		socket.on("codecast2", function (msg) {
-			//console.log('\n\nCODECAST:\n' + msg);
-			socket.broadcast.emit("codecast2", msg);
-		});
-
 		socket.on('disconnect', function(msg){
 			console.log('Slide master disconnected!');
 		});
@@ -69,39 +58,9 @@ io.on('connection', function(socket){
 		console.log('A user disconnected.');
 	});
 
-
-	// CHAT-DEMO
-	socket.on('chat', function(data){
-		//console.log('CHAT: name: '+ data.name + ', message: ' + data.message);
-		io.emit('chat', data);
-	});
-
-
-	// TEST1
-	socket.on('move it', function(data){
-		//console.log(data);
-		io.emit('move it', data);
-	});
-
-	// PAINT DEMO
-	socket.on('new line', function(data){
-		console.log(data);
-		socket.broadcast.emit('new line', data);
-	});
-
-	// BROKEN PAINT DEMO
-	socket.on('mousedown', function(data){
-		//console.log(data);
-		socket.broadcast.emit('mousedown', data);
-	});
-	socket.on('mousemove', function(data){
-		//console.log(data);
-		socket.broadcast.emit('mousemove', data);
-	});
-
 }); // end of io.on('connection' ...
 
 // Server, listen up!
 http.listen(port, function(){
-	console.log('listening on ' + port);
+	console.log('Listening on port ' + port);
 });
