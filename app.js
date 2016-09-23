@@ -26,7 +26,11 @@ app.get('/logout', function(req,res){
 // Serve static files
 app.use(express.static('public'));
 
+
 // SocketIO stuff:
+
+var boxes = [];	// for square demo
+
 io.on('connection', function(socket){
 	console.log('\nA user connected!');
 
@@ -59,13 +63,13 @@ io.on('connection', function(socket){
 			socket.broadcast.emit("codecast2", msg);
 		});
 
-		socket.on('disconnect', function(msg){
+		socket.on('disconnect', function(){
 			console.log('Slide master disconnected!');
 		});
 
 	} // end of section for slidemaster privileges
 
-	socket.on('disconnect', function(msg){
+	socket.on('disconnect', function(){
 		console.log('A user disconnected.');
 	});
 
@@ -77,17 +81,60 @@ io.on('connection', function(socket){
 	});
 
 
-	// TEST1
-	socket.on('move it', function(data){
+	// SQUARE MOVE - SHARED
+	socket.on('move', function(data){
 		//console.log(data);
-		io.emit('move it', data);
+		socket.broadcast.emit('move', data);
 	});
+
+	// SQUARE MOVE - MASTER
+	socket.on('master move', function(data){
+		//console.log(data);
+		socket.broadcast.emit('master move', data);
+	});
+
+	// SQUARE MOVE - INDIVIDUAL
+	socket.on('new box', function(boxId){
+		console.log('new box: ' + boxId);
+		// Notify all other users (except the new user)
+		socket.broadcast.emit('new box', boxId);
+		// Store id and any other info about new box:
+		boxes.push({id: boxId});
+		console.log(boxes);
+		// Send data of all previously connected users to the new user
+		socket.emit('all previous boxes', boxes);
+	});
+
+	socket.on('move individual', function(data){
+		//console.log(data);
+		socket.broadcast.emit('move individual', data);
+	});
+
+	socket.on('disconnect', function(){
+
+		// Remove from saved array of boxes
+		var indexToRemove = boxes.map(function(box) { return box.id; }).indexOf( socket.id.substring(2) );
+
+		console.log( boxes.map(function(box) { return box.id; }) );
+		console.log ( boxes.map(function(box) { return box.id; }).indexOf( socket.id.substring(2) )  );
+		if (indexToRemove > -1) {
+		    boxes.splice(indexToRemove, 1);
+		}
+		// Alert all other users to remove box
+		console.log('REMOVVIIIING');
+		console.log(socket.id.substring(2));
+		socket.broadcast.emit( 'remove box', socket.id.substring(2) );
+		console.log('NEW BOXES ARRAY');
+		console.log(boxes);
+	});
+
 
 	// PAINT DEMO
 	socket.on('new line', function(data){
 		console.log(data);
 		socket.broadcast.emit('new line', data);
 	});
+
 
 	// BROKEN PAINT DEMO
 	socket.on('mousedown', function(data){
@@ -98,6 +145,7 @@ io.on('connection', function(socket){
 		//console.log(data);
 		socket.broadcast.emit('mousemove', data);
 	});
+
 
 }); // end of io.on('connection' ...
 

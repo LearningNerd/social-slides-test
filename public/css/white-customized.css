@@ -97,8 +97,28 @@ body {
   font-size: 1.2em; }
 
 /*********************************************
- * CUSTOM STYLES
- *********************************************/
+* CUSTOM STYLES
+*********************************************/
+
+/* Using "current-visible overlay" or "fade-out overlay"
+to completely hide gaps left over from hidden fragments.
+
+Example for first fragment to be visible on a slide:
+<FIRST class="fragment fade-out overlay" data-fragment-index="0">
+<SECOND class="fragment current-visible overlay" data-fragment-index="0">
+*/
+.reveal .fragment.overlay.visible:not(.current-fragment) {
+	 display: none;
+	 height:0px;
+	 line-height: 0px;
+	 font-size: 0px;
+ }
+ .reveal .fragment.overlay.fade-out.visible {
+	 display: none;
+	 height:0px;
+	 line-height: 0px;
+	 font-size: 0px;
+ }
 
 .reveal .small {
   font-size:0.8em;

@@ -1,5 +1,22 @@
 # NOTES -- PAINTING DEMO CODE
 
+# START WITH FUN WEB SOCKETS DEMO:
+
+https://chrome.com/supersyncsports/
+	https://www.youtube.com/watch?v=aSmqq9RbiaU
+
+RACER, good video, mentions WebSocket :
+	https://www.youtube.com/watch?v=17P67Uz0kcw
+
+
+MORE COOL PAINTING APP IDEAS TO EXTEND OURS:
+
+ with music: http://www.manxue-wang.com/
+ with AI: https://www.chromeexperiments.com/experiment/alice
+ with libraries like http://paperjs.org/
+
+
+
 ## ORDER OF SLIDE CONTENT
 1) Install/setup as soon as people arrive, or beforehand via email instructions!
 ******FIRST SOMETHING HANDS ON !!!
@@ -111,7 +128,7 @@ boilerplate code for web and websocket server, html and css
 io.on('connection', function(socket){
 	console.log('A user connected!');
 
-	io.emit('test', "Hi there! I'll be your server this evening. I recommend the lobster bisque.");
+	io.sockets.emit('test', "Hi there! I'll be your server this evening. I recommend the lobster bisque.");
 
 	socket.on('test', function(data){
 		console.log(data);
@@ -126,8 +143,11 @@ socket.on('test', function(data){
 	console.log(data);
 });
 
-// XXX Test this out with a couple of tabs open: notice how only the client that just connected recieves the message!
+
+// XXX Test this out with a couple of tabs open!
 // XXX Be sure to check the console in the browser and in command line!
+
+
 
 
 // XXX Now let's have the server reply to just one client:
