@@ -1,0 +1,25 @@
+			</div><!-- END OF .slides -->
+		</div><!-- END OF .reveal -->
+
+	<footer class="branding">
+		<a class="button" href="https://github.com/LearnToCodeLA/paintdemo/tree/starter">Sample Code</a>
+		<a class="button" href="http://learntocodela.github.io/chatdemo-slides1">Slides</a>
+		<cite>By <a href="https://twitter.com/LearningNerd">Liz Krane</a> for <a href="http://www.meetup.com/LearnToCodeLA/">Learn to Code LA</a></cite>
+	</footer>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="/reveal.js"></script>
+
+	<script>
+	Reveal.initialize({
+		dependencies: [
+			{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+			{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } }
+		]
+		});
+	</script>
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/local.js"></script>
+</body>
+</html>
