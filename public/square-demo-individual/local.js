@@ -84,7 +84,7 @@ function moveTheBox(keyCode, boxId) {
 	// WASD keys:
 	var UP = 87, DOWN = 83, LEFT = 65, RIGHT = 68;
 
-	// currently using percentages in css for these valules:
+	// currently using percentages in css for these values:
 	var SCREENWIDTH = 100, SCREENHEIGHT = 100, BOXSIZE = 10, STEPSIZE = 1.5, direction = 1, newPositionValue = 0;
 
 	var box = document.getElementById(boxId);

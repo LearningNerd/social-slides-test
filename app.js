@@ -5,6 +5,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var cookie = require('cookie');
 var cookieParser = require('cookie-parser');
+//var browserSync = require('browser-sync');
 
 var port = process.env.PORT || 8000;
 
@@ -82,9 +83,9 @@ io.on('connection', function(socket){
 
 
 	// SQUARE MOVE - SHARED
-	socket.on('move', function(data){
+	socket.on('shared move', function(data){
 		//console.log(data);
-		socket.broadcast.emit('move', data);
+		socket.broadcast.emit('shared move', data);
 	});
 
 	// SQUARE MOVE - MASTER
@@ -105,9 +106,9 @@ io.on('connection', function(socket){
 		socket.emit('all previous boxes', boxes);
 	});
 
-	socket.on('move individual', function(data){
+	socket.on('individual move', function(data){
 		//console.log(data);
-		socket.broadcast.emit('move individual', data);
+		socket.broadcast.emit('individual move', data);
 	});
 
 	socket.on('disconnect', function(){
@@ -152,4 +153,8 @@ io.on('connection', function(socket){
 // Server, listen up!
 http.listen(port, function(){
 	console.log('listening on ' + port);
+  // browserSync({
+  //   	proxy: 'localhost:' + port,
+  //   	files: ['public/**/*.{js,css,html}']
+  // });
 });
