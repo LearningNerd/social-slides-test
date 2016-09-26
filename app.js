@@ -112,22 +112,40 @@ io.on('connection', function(socket){
 	});
 
 	socket.on('disconnect', function(){
+		var boxNotRemoved = removeTheBox( socket.id.substring(2) );
+		if ( boxNotRemoved ) {
+			console.log('this id was not assocaited with a box: ');
+			console.log( socket.id.substring(2) );
+		} else {
+			console.log('USER DISCONNECTED, so removing boxes');
 
-		// Remove from saved array of boxes
-		var indexToRemove = boxes.map(function(box) { return box.id; }).indexOf( socket.id.substring(2) );
-
-		console.log( boxes.map(function(box) { return box.id; }) );
-		console.log ( boxes.map(function(box) { return box.id; }).indexOf( socket.id.substring(2) )  );
-		if (indexToRemove > -1) {
-		    boxes.splice(indexToRemove, 1);
+			// Alert all other users to remove box
+			socket.broadcast.emit( 'remove box', socket.id.substring(2) );
 		}
-		// Alert all other users to remove box
+	});
+
+	socket.on('remove box', function(boxId){
+		removeTheBox(boxId);
+		socket.broadcast.emit( 'remove box', boxId );
+	});
+
+	function removeTheBox(boxId) {
+		// Remove from saved array of boxes
+		var indexToRemove = boxes.map(function(box) { return box.id; }).indexOf( boxId );
+
+		//console.log( boxes.map(function(box) { return box.id; }) );
+		//console.log ( boxes.map(function(box) { return box.id; }).indexOf( boxId )  );
+
+		if (indexToRemove === -1) return true;
+
+		boxes.splice(indexToRemove, 1);
+
 		console.log('REMOVVIIIING');
-		console.log(socket.id.substring(2));
-		socket.broadcast.emit( 'remove box', socket.id.substring(2) );
+		console.log(boxId);
+
 		console.log('NEW BOXES ARRAY');
 		console.log(boxes);
-	});
+	}
 
 
 	// PAINT DEMO

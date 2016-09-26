@@ -10,9 +10,6 @@ socket.on('connect', function(){
 	myBox.id = socket.id;
 	console.log('* * * * * * EMITTING NEW BOX, id: ' + socket.id);
 	socket.emit( 'new box', socket.id)
-
-	// Show all previously connected boxes
-
 });
 
 socket.on('disconnect', function(){
