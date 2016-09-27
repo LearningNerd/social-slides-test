@@ -1,0 +1,98 @@
+<!-- - - - - - - - - - - - - - - STEP 3 CODE  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<section>
+	<h2 class="big">Challenge: Send objects with SocketIO events</h2>
+	<p>Instead of sending a string as the data for your SocketIO events,
+		send an object containing two properties: your name and your favorite number.
+	</p>
+	<p>Hint: an quick and easy way to make objects in JavaScript is with {property: value, anotherProperty: anotherValue}</p>
+	<p>Another hint: you'll need to change the code in two different places (one spot in each JS file)</p>
+</section>
+
+
+
+
+
+
+
+<!--
+
+- STEP 4: Event listener sends and causes console.log(data) when the mouse is clicked anywhere in the window!
+
+- event listener recap from prereqs???
+
+-->
+
+<section>
+	<p>event-based programming, one event triggers another -- chain reaction, kind of like a row of dominoes!</p>
+	<p>GIF of cool domino thing</p>
+</section>
+
+<section>
+	<p> SHOW CODE: addEventListener on click, console.log("you clicked!")</p>
+</section>
+
+<section>
+	<h2 class="big">Challenge: Combine user input with SocketIO events</h2>
+	<p>Change your code so that when the user clicks the screen, the client-side JavaScript sends your object to the server.</p>
+	<p>Hint: use the code from the previous slide and move just one line of your client-side JS code to go inside the event listener</p>
+</section>
+
+
+
+<!--
+
+STEP 5: DIFFERENCE BETWEEN io.sockets.emit and socket.emit and socket.broadcast.emit, testing in multiple tabs!
+
+- CHALLENGE 1: have server reply to the client who clicked with socket.emit('test', 'I saw you click!')
+- CHALLENGE 2: have server reply to everyone EXCEPT the client who clicked: with socket.broadcast.emit('test', 'THEY CLICKED! OFF WITH THEIR HEAD!')
+
+STUFF TO SHOW NEXT:		*** TEST IN MULTIPLE BROWSER TABS!!
+
+**** AT END OF STEP 3, SHOW SQUARE DEMOS ??? using browser events (keyboard input) to trigger socketIO events,
+my point: there are many different kinds of interactions possible with just a couple of SocketIO functions,
+the variation is more in how the events are CONNECTED.
+
+- then talk about HTTP vs WebSocket?? or put that in prereqs video too??
+
+
+
+STEP 6: GETTING MOUSE COORDINATES!!
+
+- Group googling: how to get mouse coordinates in JS
+- Show solution
+- CHALLENGE: Send mouse x and y coordinates inside an object, send to the server!
+
+
+STEP 7: CANVAS introoo!!! how to draw a line locally, no user input
+GROUP GOOGLING: how to check when mouse is clicked, unclicked, and moved -- 3 events!
+CHALLENGE: how to draw a line locally based on your mouse movements
+
+STEP 8: Send canvas data to all other clients with socket.broadcast.emit
+THEN: draw canvas from other clients using received data
+
+THEN: BUUUUGGGG, show how it's broken.
+	talking point: hard to test multiuser apps with just one computer; multiple tabs isn't a perfect simulation!
+
+PART 2:
+- introduce timestamps .... interpolation... drawing line segments...
+- googling challenge: give each user a random color ??? OR: do chat app demo instead?
+
+-->
+
+<section>
+	<h2>app.js</h2>
+	<h3 class="subhead">Sending and receiving data on the server</h3>
+	<pre><code class="smaller js" data-trim contenteditable="">
+//
+	</code></pre>
+</section>
+
+<section>
+	<h2>local.js</h2>
+	<h3 class="subhead">Sending and receiving data on the client</h3>
+	<pre><code class="smaller js" data-trim contenteditable="">
+//
+	</code></pre>
+</section>
+
+<!-- - - - - - - - - - - - - - - - END of STEP 3 CODE - - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - -->

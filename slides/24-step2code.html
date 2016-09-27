@@ -1,0 +1,117 @@
+<!-- - - - - - - - - - - - - - - STEP 2 CODE  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<section>
+	<h2 class="big">Step 2: Sending and receiving data between client and server with SocketIO</h2>
+</section>
+
+<section>
+	<h2>app.js</h2>
+	<h3 class="subhead">Sending and receiving data on the server</h3>
+	<pre><code class="smaller js" data-trim contenteditable="">
+// When a user connects over websocket,
+io.on('connection', function(socket) {
+
+	// Display this message in the server console
+	console.log('A user connected!');
+
+	// Send an event named "test" to every client with io.sockets.emit() function (or just io.emit() for short)
+	// and with this event, send the string 'Hey everyone...' as the data
+	io.sockets.emit('test', 'Hey everyone, somebody new just connected! This is a message from your server.');
+
+	// When the server receives an event named "test",
+	socket.on('test', function(data){
+		// Take whatever data was received and display it in the server console
+		console.log(data);
+	});
+
+});	// End of SocketIO code
+	</code></pre>
+</section>
+
+<section>
+	<h2>local.js</h2>
+	<h3 class="subhead">Sending and receiving data on the client</h3>
+	<pre><code class="smaller js" data-trim contenteditable="">
+// Send an event named "test" to the server with socket.emit() function
+// and with this event, send the string 'Hi, this is...' as the data
+socket.emit('test', 'Hi, this is a message from the client!');
+
+// When the client receives an event named "test",
+socket.on('test', function(data){
+	// Take whatever data was received and display it in the client console
+	console.log(data);
+});
+	</code></pre>
+</section>
+
+<section>
+	<h2>Next, restart the app and open up both consoles</h2>
+	<p>Remember to:
+		<br>- <strong>Ctrl + C</strong> in command line to turn off the server
+		<br>- <strong>node app.js</strong> in command line to run the server again
+		<br>- And don't forget to refresh your web browser!
+	</p>
+	<p>(screenshot of both consoles side by side showing a message??)</p>
+</section>
+
+
+
+<!--
+- SocketIO functions very similar to the JS built-in event listeners: two parameters, event name and function to run
+- Both client and server can send and receive events,
+- But only the server can broadcast its events to multiple others
+- The client has only one way to send an event: to the server
+-->
+<section>
+	<h2>SocketIO Functions</h2>
+	<div class="halves">
+		<h3>Server:</h3>
+		<p>socket.on - Listen!</p>
+		<p>socket.emit - Send to one particular client</p>
+		<p>socket.broadcast.emit - Send to all except one particular client</p>
+		<p>io.sockets.emit - Send to all clients </p>
+	</div>
+	<div class="halves">
+		<h3>Client:</h3>
+		<p>socket.on - Listen!</p>
+		<p>socket.emit - Send to server</p>
+	</div>
+</section>
+
+<section>
+	<p class="big">socket.on('event name here', nameOfYourFunction)</p>
+	<p>Event name is a STRING, can be whatever you want</p>
+	<p>Define the function yourself or use an anonymous function</p>
+	<p>Very similar to event listeners in JavaScript! (this should be covered in the prereqs video!)</p>
+</section>
+
+<section>
+	<p>show io.on('connection', function(socket){...}) from step1 code</p>
+	<p>this is the listener that starts off everything else!</p>
+	<p>notice that this is what gives us access to the SOCKET object, so all our other socketIO functions go inside this function!
+	<p>show an illustration of how this code runs multiple times, with multiple clients connecting, multiple sockets</p>
+	<p>show step 2 code and what happens when, what happens multiple times, etc</p>
+</section>
+
+
+<!--
+- I should mention what a "callback" is
+- mention http://callbackhell.com/ ???
+- Beginner's tutorials generally focus on procedural programming -- your code happens in one order, step by step, until it's finished.
+Event based programming is going to feel pretty weird if you've never tried it before!
+
+- We don't know exactly when our functions are going to run or what order they will happen in,
+so we need to make sure every our code works in every possible case!
+
+- If multiple events are designed to fire at once, you might not know in which order they happen!
+
+- So event-based programming can be harder to visualize and thus harder to wrap your head around, and harder to keep your code organized
+
+- Events can trigger other events, like a row of dominoes falling over
+
+- There's an event loop running in the background -- an infinite loop that waits for events to happen
+-->
+<section>
+	<h2>Asynchronous event-based programming is TRICKY </h2>
+
+</section>
+<!-- - - - - - - - - - - - - - - - END of STEP 2 CODE - - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - -->
