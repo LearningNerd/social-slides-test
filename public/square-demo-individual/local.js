@@ -52,11 +52,11 @@ function moveAndBroadcast(event) {
 
 	if ( keyCode == UP || keyCode == DOWN || keyCode == LEFT || keyCode == RIGHT ) {
 		moveTheBox(keyCode, socket.id);
-		socket.emit( 'move individual', {key: keyCode, id: socket.id} );
+		socket.emit( 'individual move', {key: keyCode, id: socket.id} );
 	}
 }
 
-socket.on('move individual', function(data){
+socket.on('individual move', function(data){
 	moveTheBox(data.key, data.id);
 });
 

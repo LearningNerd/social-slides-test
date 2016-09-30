@@ -20,8 +20,8 @@ Reveal.addEventListener( 'boxmaster', function() {
 	var newBox = document.createElement('div');
 	newBox.id = 'boxmaster';
 	newBox.className = 'box me';
-	newBox.style.top = '45%';
-	newBox.style.left = '60%';
+	newBox.style.top = '10%';
+	newBox.style.left = '45%';
 	document.body.appendChild(newBox);
 
 	console.log('set socket listener');
@@ -137,8 +137,8 @@ Reveal.addEventListener( 'boxshared', function() {
 	var newBox = document.createElement('div');
     newBox.id = 'boxshared';
 	newBox.className = 'box me';
-	newBox.style.top = '45%';
-	newBox.style.left = '60%';
+	newBox.style.top = '10%';
+	newBox.style.left = '45%';
 	document.body.appendChild(newBox);
 
 	window.addEventListener('keydown', moveAndBroadcast, false);
@@ -194,8 +194,8 @@ Reveal.addEventListener( 'boxindividual', function() {
 	// Link box to socketIO id
 	newBox.id = socket.id;
 	newBox.className = 'box me';
-	newBox.style.top = '45%';
-	newBox.style.left = '60%';
+	newBox.style.top = '10%';
+	newBox.style.left = '45%';
 	document.body.appendChild(newBox);
 
 	// Notify server of the new box
@@ -343,7 +343,6 @@ function moveTheBox(keyCode, boxId) {
 			break;
 	}
 }
-
 
 // // codecast-test1:
 

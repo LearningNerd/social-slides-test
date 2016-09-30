@@ -23,10 +23,16 @@ Anyway, let's get set up for the workshop! Here's what we're going to do:
 ** this video is broken up into a few parts/sections, so you can skip ahead if needed! **
 ** just click on the section names on the screen, or below the video **
 
+- Join us on Slack!
+- Be sure to download a text editor, like Atom or Sublime are good options
 - Download and install NodeJS -- FIRST: how to check if you already have it
 - Download the sample code for our workshop
 - Download the dependencies or libraries needed to run our sample code
 - Sign up for GitHub
 - Sign up for Heroku
-- ???? JavaScript primer ????
+- JavaScript primer
+	- how to open your browser console!
+	- getting an object from the page ... getElementById
+	- example and breakdown of addEventListener
+	- event listener with and without anonymous functions
 - OPTIONAL: install nodemon!!! (use Homebrew on Mac)

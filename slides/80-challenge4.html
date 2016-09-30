@@ -1,0 +1,35 @@
+<!-- - - - - - - - - - - - - - - - - - CHALLENGE 4  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<section>
+	<h2 style="font-size:1.3em;margin-bottom:60px;">Challenge 4: </h2>
+	<p>Change your <strong><em>server-side</em></strong> code so that when the server receives the event named <strong>"test"</strong>,
+		 it does two more things:
+	</p>
+	<p style="text-align:left;width:90%;margin:20px auto;"><strong>1.</strong> It replies to the client who clicked their screen with an event called <strong>"test"</strong> containing the message <strong>"I saw you click!"</strong>
+	</p>
+	<p style="text-align:left;width:90%;margin:10px auto;margin-bottom:60px;"><strong>2.</strong> It also replies to <em>every client except the one who clicked</em> with an event called <strong>"test"</strong> containing the message <strong>"Off with their head!"</strong>
+	</p>
+	<p class="highlighted-blue"><strong>Hint:</strong> to test this code, you need to open up <em>multiple</em> copies of your client-side app in multple browser tabs!</p>
+</section>
+
+<section>
+	<h2 class="subhead">Time's up!</h2>
+	<h2 class="big">Solution to Challenge 4</h2>
+</section>
+
+<section>
+	<h2>app.js</h2>
+	<h3 class="subhead highlighted-red">Solution to challenge 4</h3>
+
+		<pre>
+//server code...... ***
+
+<span class="fragment highlight-current-red" data-fragment-index="0"><span class="fragment highlight-current-red" data-fragment-index="1">document.addEventListener('click', function(<span class="fragment highlight-current-red" data-fragment-index="4">event</span>) {</span>
+	<span class="fragment highlight-current-red" data-fragment-index="2">console.log(<span class="fragment highlight-current-red" data-fragment-index="4">event</span>);</span>
+	<span class="fragment highlight-current-red" data-fragment-index="3">socket.emit('test', <span class="fragment highlight-current-red" data-fragment-index="4">event</span>);</span>
+<span class="fragment highlight-current-red" data-fragment-index="1">});</span></span>
+
+*****
+		</pre>
+</section>
+
+<!-- - - - - - - - - - - - - - - - - END of  CHALLENGE 4 - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - -->
