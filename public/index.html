@@ -265,7 +265,8 @@ var socket = io();
 
 			<section>
 				<p>You'll see a blank page -- that's good!</p>
-				<p><strong>Next, check the command line</strong>.</p>
+				<p><strong>Now check the command line:</strong></p>
+				<img src="images/start-nodejs.gif" class="noborder" style="max-width:100%;">
 				<p>If the connection is working, it will show the message <strong>"A user connected!"</strong></p>
 			</section>
 
@@ -326,19 +327,23 @@ socket.on('test', function(data) {
 </section>
 
 <section>
-	<h2 style="margin-bottom:60px;">Now we'll be using <em>two</em> consoles!</h2>
+	<h2 style="margin-bottom:30px;">Now we'll be using <em>two</em> consoles!</h2>
 	<div class="halves">
-		<h3>Server Side Console:<br> <span class="highlighted-blue">Command Line</span></h3>
+		<p>Server Side Console:</p>
+		<p class="highlighted-blue">Command Line</p>
 
 	</div>
 	<div class="halves">
-		<h3>Client Side Console:<br> <span class="highlighted-blue">Web Browser</span></h3>
+		<p>Client Side Console:</p>
+		<p class="highlighted-blue">Web Browser</p>
 
 	</div>
+
+	<img src="images/two-consoles.png" class="noborder" style="max-width:100%;">
 </section>
 
 <section>
-	<h2 style="margin-bottom:50px;">Now save the changes, restart the app,<br> and open up both consoles</h2>
+	<h2 style="margin-bottom:50px;">Save the changes, restart the app,<br> and open up both consoles</h2>
 	<p><strong>Remember to:</strong></p>
 	<ol>
 		<li>Press <strong>Ctrl + C</strong> in command line to turn off the server</li>
@@ -349,18 +354,18 @@ socket.on('test', function(data) {
 
 <section>
 	<p>You should see something like this:</p>
-	<p>(screenshot of both consoles side by side showing a console.log message??)</p>
+	<img src="images/two-console-logs.png" class="noborder" style="max-width:100%;">
 </section>
 <!-- - - - - - - - - - - - - - - - END of STEP 2 CODE - - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - -->
 <!-- - - - - - - - - - - WEBSOCKET HIGH-LEVEL OVERVIEW - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <section>
-	<h2 class="big" style="margin-bottom:60px;">Congrats!<br> You now have a real-time web app!</h2>
-	<h2 class="subhead fragment fade-in" style="margin-bottom:40px;">"Uh, OK... That was boring."</h2>
+	<h2 class="big" style="margin-bottom:60px;">Congratulations!<br> You now have a real-time web app!</h2>
+	<h2 class="subhead fragment fade-in" style="margin-bottom:40px;">"Uh, OK... That wasn't too exciting."</h2>
 	<h2 class="subhead fragment fade-in" style="font-size:1.3em;margin-bottom:30px;">"What's so special about this whole<br> WebSocket thing, anyway?"</h2>
 </section>
 			<section>
-				<h2 class="big">HTTP vs WebSocket</h2>
-				<a href="https://catalog.archives.gov/id/193842" title="Fun fact: this telegram was sent by Harpo Marx to John F. Kennedy"><img class="noborder noshadow" src="images/telegram-telephone.png"></a>
+				<h2 class="subhead">Let's talk about protocols</h2>
+				<h2 style="font-size:2.5em;">HTTP vs WebSocket</h2>
 			</section>
 
 			<section>
@@ -369,7 +374,7 @@ socket.on('test', function(data) {
 			</section>
 
 			<section>
-				<p><strong>WebSocket</strong> is better for conversations; both the client and the server can send and recieve information all at the same time.</p>
+				<p><strong>WebSocket</strong> is better for conversations; both the client and the server can send and receive information all at the same time.</p>
 				<img class="noborder noshadow" src="images/websocket-convo.png">
 				<cite>"Listen" icon by Rémy Médard, "Speak" icon by Eðvarð Atli Birgisson, from the Noun Project</cite>
 			</section>
@@ -512,16 +517,36 @@ socket.on('test', function(data) {
 </section>
 
 <section>
+	<h2 class="big">The Event Loop</h2>
+
+	<p>The <strong>event loop</strong> is literally an infinite loop running in the background, checking if any events have happened and running your at the right time.</p>
+	<img src="images/domino-loop.gif" class="noborder">
+	<p>There's one built into NodeJS and there's one built into your web browser!</p>
+	<p>See <a target="_blank" href="https://www.youtube.com/watch?v=8aGhZQkoFbQ">this great video</a> for details on the event loop in JavaScript.</p>
+</section>
+
+<section>
+	<h2 style="margin-bottom:50px;">Event-based programming is <em>everywhere!</em></h2>
+	<p style="margin-bottom:40px;" class="fragment">Anywhere you deal with user input, you'll see event-based programming.</p>
+	<p class="fragment">It's big in NodeJS, SocketIO, and even in basic client-side JavaScript.</p>
+</section>
+
+<section>
+	<h2 style="margin-bottom:50px;">There are <em>lots</em> of events built into JavaScript</h2>
+	<p style="margin-bottom:40px;" class="fragment">See the <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/Events">MDN event reference page</a> for a <em>gigantic</em> list!</p>
+	<p class="fragment" class="fragment">In fact, <strong>let's open that link right now</strong> and keep it handy for later!</p>
+</section>
+
+<section>
+	<h2 style="margin-bottom:50px;">You can also create your own events</h2>
+	<p style="margin-bottom:40px;" class="fragment">We'll be making our own custom SocketIO events today.</p>
+	<p class="fragment">You can also make custom events in plain JavaScript; see the <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Creating_and_triggering_events">MDN guide on creating events</a> for more info.</p>
+</section>
+
+<section>
 	<h2>Events can trigger other events</h2>
-	<p>You can create chain reactions in your code, not unlike a row of dominos!</p>
-	<p>image like: https://media.giphy.com/media/WmkYhCt0Ddnyw/giphy.gif
-		or:
-		https://media.giphy.com/media/13Gwy6JdiEWxSU/giphy.gif /// https://media.giphy.com/media/OatqPWFONWsq4/giphy.gif
-		or people: https://media.giphy.com/media/grlRZ1H0ndApq/giphy.gif
-		[image ... http://i.imgur.com/NS8utp5.gifv ??
-			small bugs can lead to big consequences: http://i.imgur.com/NuePIoU.gifv OR https://giphy.com/gifs/unsatisfying-cY5jnV521nig0
-			]
-	</p>
+	<img src="images/human-dominoes.gif" class="noborder" width="500">
+	<p>You can create chain reactions in your code, not unlike a row of dominoes!</p>
 </section>
 <!--
 - You can create all sorts of interesting and complex interactions!
@@ -529,29 +554,22 @@ socket.on('test', function(data) {
 -->
 
 <section>
-	<h2>Sometimes it doesn't work as expected</h2>
-	<p>[image: https://media.giphy.com/media/OxgjxSpRwMXoA/giphy.gif ]</p>
+	<h2>But sometimes it's hard to get it working</h2>
+	<img src="images/no-dominoes.gif" class="noborder" width="500">
+	<p>Event-based programming can be harder to learn and harder to debug,<br> so be prepared for some frustration.</p>
 </section>
 <!--
 - Event-based programming can be harder to wrap your head around.
 - Need to make sure your code runs in every possible situation
 -->
-
-<section>
-	<h2 class="big">The Event Loop</h2>
-
-	<p>Literally an infinite loop running in the background, waiting for events to happen and running your code at the appropriate time.</p>
-	<p>http://i.imgur.com/7pcJ0.gif</p>
-	<p>There's one built into NodeJS and there's one built into your web browser!</p>
-	<p>See <a href="https://www.youtube.com/watch?v=8aGhZQkoFbQ">this great video</a> for details on the event loop in JavaScript.</p>
-</section>
-
-<section>
-	<h2 style="margin-bottom:80px;font-size:1.8em">Event-based programming is <em>everywhere!</em></h2>
-	<p style="font-size:1.3em;">It's big in NodeJS and SocketIO, but it's also a big part of plain client-side JavaScript.</p>
-</section>
 <!-- - - - - - - - - - - - - - - - END of EVENTS OVERVIEW - - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - -->
 <!-- - - - - - - - - - - - - - - - - - - - - - EVENT LISTENERS - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<section>
+	<h2 class="subhead">Let's look at some code!</h2>
+	<h2 class="big">JavaScript Events in Action</h2>
+
+</section>
+
 <section>
 	<h2 style="margin-bottom:40px;">Breakdown of the JavaScript Event Listener</h2>
 
@@ -609,10 +627,13 @@ document.addEventListener('click', <span class="highlighted-red">function(event)
 </section>
 
 <section>
-	<h2 style="margin-bottom:40px">Test it out!</h2>
-	<p style="margin-bottom:40px;font-size:0.93em;">
-		Copy-paste the code into local.js, restart your app, click somewhere inside your blank web page, and then check your browser console.
-	</p>
+	<h2 style="margin-bottom:40px">Let's test it out, shall we?</h2>
+	<ol class="listspaces" style="margin-bottom:15px;font-size:0.92em;">
+		<li><strong>Copy-paste the code below into local.js</strong> (after your existing code)</li>
+		<li><strong>Restart your app</strong> (Remember: Ctrl + C, "node app.js", refresh the browser)</li>
+		<li><strong>Click somewhere inside your blank web page</strong> (after refreshing the page!)</li>
+		<li><strong>And then check your browser console</strong></li>
+	</ol>
 	<pre style="font-size:1.1em;margin:0;width:100%;"><code class="js" data-trim contenteditable="">
 
 document.addEventListener('click', function(event) {
@@ -622,13 +643,19 @@ document.addEventListener('click', function(event) {
 </section>
 
 <section>
-	<p style="font-size:1.1em;width:85%;margin:0 auto;margin-bottom:40px;">
-		You should see a MouseEvent object in the console, which you can click to expand. Look, it's full of data!
+	<h2 style="margin-bottom:50px;">Behold! Event data!</h2>
+	<p style="margin-bottom:20px;">
+		You should see a MouseEvent object in the console. Click to expand the data:
 	</p>
-	<p>**IMAGE / GIF HERE**</p>
+	<img src="images/console-expand-object.gif" width="600">
 </section>
 <!-- - - - - - - - - - - - - - - - - - - - - END of EVENT LISTENERS - - - - - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - -->
 <!-- - - - - - - - - - - - - - - - - - - - - SOCKETIO LISTENERS - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<section>
+	<h2 class="big">Next up: Events in SocketIO</h2>
+	<h3 class="subhead">You already know how to use them!</h3>
+</section>
+
 <section>
 	<h2 style="margin-bottom:40px;">Breakdown of the <span class="highlight-blue">SocketIO</span> Event Listener</h2>
 
@@ -744,6 +771,11 @@ socket.on('test', function(data) {
 <!-- - - - - - - - - - - - - - - - END of CHALLENGE 2 - - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - -->
 <!-- - - - - - - - - - - - - - - - - - - - - SOCKETIO LISTENERS - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <section>
+	<h2 class="big">Next up: The SocketIO Event Emitter</h2>
+	<h3 class="subhead">This is how we send (or <em>emit</em>) events</h3>
+</section>
+
+<section>
 	<h2 style="margin-bottom:60px;">Breakdown of the <span class="highlight-blue">SocketIO</span> Event Emitter</h2>
 
 		<pre style="padding-left:15px;margin:0;width:100%;margin-bottom:60px;">
@@ -796,6 +828,13 @@ socket.on('test', function(data) {
 <!-- - - - - - - - - - - - - - - - END of MORE SOCKETIO FUNCTIONS - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - -->
 <!-- - - - - - - - - - - - - - - - - - CHALLENGE 3  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <section>
+	<h2 style="margin-bottom:40px;">Simulating multiple clients locally</h2>
+	<p>For the next challenge, you'll need to open <em>at least two</em> instances of your app, each with its own web console, to test your app with multiple clients.</p>
+	<img src="images/two-clients.png" class="">
+	<p>You can use two browser tabs or make two separate windows side-by-side.</p>
+</section>
+
+<section>
 	<h2 style="font-size:1.3em;margin-bottom:50px;">Challenge 3: Reply to users with new SocketIO functions</h2>
 	<p>Change your <strong><em>server-side</em></strong> code so that when the server receives<br> the event named <strong>"test"</strong>,
 		 it does two more things:
@@ -805,12 +844,6 @@ socket.on('test', function(data) {
 	<p style="text-align:left;width:90%;margin:10px auto;margin-bottom:50px;"><strong>2.</strong> It also replies to <em>every client except the one who clicked</em> with an event called <strong>"test"</strong> containing the message <strong>"Off with their head!"</strong>
 	</p>
 	<p class="highlighted-blue"><strong>Hint:</strong> to test this code, you need to open up <em>multiple</em> browser windows/tabs,<br> with <em>multiple</em> browser consoles open!</p>
-</section>
-
-<section>
-	<h2 style="margin-bottom:50px;">Simulating multiple clients locally</h2>
-	<p>***ANIMATED GIF: open two browser windows + consoles side-by-side, show click on one screen, show messages that appear!
-		** show command line too?</p>
 </section>
 
 <section>
@@ -838,23 +871,36 @@ io.on('connection', function(socket) {
 		</pre>
 </section>
 
+<section>
+	<h2 class="subhead">Congratulations, coding ninja!</h2>
+	<h2 class="big">Now you know 90% of SocketIO!</h2>
+</section>
+
 <!-- - - - - - - - - - - - - - - - - END of  CHALLENGE 3 - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - -->
 <!-- - - - - - - - - - - - - - - - -  - - - - - - SQUARE DEMOS - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<section>
+	<h2 style="margin-bottom:40px;">So the only limit is your imagination!</h2>
+	<img src="images/imagination.jpg" width="500">
+	<p>With just those few SocketIO functions and some client-side JavaScript,
+		 you can create <em>any and every</em> type of real-time, multi-user interaction.</p>
+</section>
+
 <section data-state="boxmaster">
-	<h2>Now the only limit is your imagination!</h2>
-	<p>**image: spongebob imagination gif</p>
-	<p>With just a couple of SocketIO functions and JavaScript event listeners,
-		 many different kinds of interactions are possible!</p>
+	<h2 style="margin-bottom:60px;">Here's a super basic example</h2>
+	<p style="margin-bottom:60px;">I wrote some client-side JavaScript to move a box around the screen...</p>
+	<p>Then I used SocketIO to let me broadcast it to all of you!</p>
 </section>
 
 <section data-state="boxshared">
-	<p class="highlighted-blue"><strong>Press W, A, S, and D</strong> on your keyboard to move the box!</p>
-	<p>Here we're all controlling the same box at the same time, like **Twitch Plays Pokemon (watch that later if you haven't seen it)!</p>
+	<h2 style="margin-bottom:60px;">Now <strong>press <span class="highlighted-blue">W</span>, <span class="highlighted-blue">A</span>, <span class="highlighted-blue">S</span>, and <span class="highlighted-blue">D</span></strong> on your keyboard to move the box!</h2>
+	<p style="margin-bottom:60px;">Here we're all controlling the same box at the same time, just like in<br> <a target="_blank" href="https://en.wikipedia.org/wiki/Twitch_Plays_Pok%C3%A9mon">Twitch Plays Pokemon</a> (check that out later if you haven't seen it!)</p>
+	<p>Just one small change in my code produced this very different interaction. Cool, huh?</p>
 </section>
 
 <section data-state="boxindividual">
-	<p>Now everyone has a box of their own to move around the screen!</p>
-	<p>(Not that exciting, I know. But imagine this as the first step towards making a multiplayer game!)</p>
+	<h2 style="margin-bottom:60px;">Now let's try a third variation</h2>
+	<p style="margin-bottom:60px;">Everyone has a box of their own to move around the screen!</p>
+	<p><em>OK, I know, it's not that exciting.<br> But imagine this as the first step towards making a multiplayer game!</em></p>
 </section>
 <!-- - - - - - - - - - - - - - - - - - - - END of SQUARE DEMOS - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - -->
 <!-- - - - - - - - - - - OVERVIEW OF OUR APP - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -878,17 +924,43 @@ io.on('connection', function(socket) {
 			</section>
 
 <!-- - - - - - - - - - - END of OVERVIEW OF OUR APP - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- - - - - - - - - - - - - - - LAST PIECES - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<section>
+	<h2 class="big" style="margin-bottom:40px;">The last pieces of the puzzle:</h2>
+	<ol class="listspaces">
+		<li class="fragment highlight-current-blue">How to detect mouse movements (when users click and drag their mouse and when they let go)</li>
+		<li class="fragment highlight-current-blue">How to draw lines on the screen</li>
+		<li class="fragment highlight-current-blue">How to draw those lines <em>based on users' mouse movements</em></li>
+		<li class="fragment highlight-current-blue">Then combine that with our SocketIO functions and we're done!</li>
+	</ol>
+</section>
+
+<!-- NEXT:
+- canvas 101 -- what is it? canvas element, JS to get object and context
+- canvas coordinates
+- the four functions to draw a line, copy-paste-test
+- ***mini game here if we have time?**
+
+- 3 mouse event listeners
+- how to get mouse coordinates
+
+- challenge to put it all together!
+
+**** ADD TO SOCKETIO LISTENERS SECTION:
+-- walkthrough of app.js on connection event, walkthrough what code happens when,
+	point out it gives us acces to "socket" object which we then use to set up ANOTHER listener
+	....yup, nested listeners! (inception gif) -->
+
+<!-- - - - - - - - - - - - - - - - END of LAST PIECES - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <!-- - - - - - - - - - - - - - - - - - CHALLENGE 4  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <section>
-	<h2 style="font-size:1.3em;margin-bottom:60px;">Challenge 4: </h2>
-	<p>Change your <strong><em>server-side</em></strong> code so that when the server receives the event named <strong>"test"</strong>,
-		 it does two more things:
-	</p>
-	<p style="text-align:left;width:90%;margin:20px auto;"><strong>1.</strong> It replies to the client who clicked their screen with an event called <strong>"test"</strong> containing the message <strong>"I saw you click!"</strong>
-	</p>
-	<p style="text-align:left;width:90%;margin:10px auto;margin-bottom:60px;"><strong>2.</strong> It also replies to <em>every client except the one who clicked</em> with an event called <strong>"test"</strong> containing the message <strong>"Off with their head!"</strong>
-	</p>
-	<p class="highlighted-blue"><strong>Hint:</strong> to test this code, you need to open up <em>multiple</em> copies of your client-side app in multple browser tabs!</p>
+	<h2 style="margin-bottom:25px;">Challenge 4: Group Googling for Mouse Events</h2>
+	<p class="subhead" style="font-size:0.8em;margin-bottom:70px;">Let's learn the way <em>real</em> programmers do it -- with Google!</p>
+	<p><strong>Choose one of the following missions:</strong></p>
+	<ol class="listspaces">
+		<li>Using our "click" event code that we already have, how can we get the mouse coordinates (X and Y position) of where the user clicked and send them to the server?</li>
+		<li>Which <em>three</em> JavaScript events should we use instead of "click" to detect<br> <strong>1)</strong> when a user holds down their mouse button, <strong>2)</strong> moves their mouse, and <strong>3)</strong> lets go of their mouse button?</li>
+	</ol>
 </section>
 
 <section>
@@ -897,22 +969,145 @@ io.on('connection', function(socket) {
 </section>
 
 <section>
-	<h2>app.js</h2>
-	<h3 class="subhead highlighted-red">Solution to challenge 4</h3>
+	<h2>local.js</h2>
+	<h3 class="subhead highlighted-red">Solution to challenge 4, part 1</h3>
 
-		<pre>
-//server code...... ***
+		<pre style="font-size:0.8em;padding-left:10px;">
 
-<span class="fragment highlight-current-red" data-fragment-index="0"><span class="fragment highlight-current-red" data-fragment-index="1">document.addEventListener('click', function(<span class="fragment highlight-current-red" data-fragment-index="4">event</span>) {</span>
-	<span class="fragment highlight-current-red" data-fragment-index="2">console.log(<span class="fragment highlight-current-red" data-fragment-index="4">event</span>);</span>
-	<span class="fragment highlight-current-red" data-fragment-index="3">socket.emit('test', <span class="fragment highlight-current-red" data-fragment-index="4">event</span>);</span>
-<span class="fragment highlight-current-red" data-fragment-index="1">});</span></span>
+document.addEventListener(<span class="fragment highlight-current-red" data-fragment-index="0">'mousedown'</span>, <span class="fragment highlight-current-red" data-fragment-index="3">startDrawing</span>);
+document.addEventListener(<span class="fragment highlight-current-red" data-fragment-index="1">'mousemove'</span>, <span class="fragment highlight-current-red" data-fragment-index="4">drawStuff</span>);
+document.addEventListener(<span class="fragment highlight-current-red" data-fragment-index="2">'mouseup'</span>, <span class="fragment highlight-current-red" data-fragment-index="5">stopDrawing</span>);
 
-*****
+function <span class="fragment highlight-current-red" data-fragment-index="3">startDrawing</span>(event) {
+	// do cool stuff here
+}
+function <span class="fragment highlight-current-red" data-fragment-index="4">drawStuff</span>(event) {
+	// do cool stuff here
+}
+function <span class="fragment highlight-current-red" data-fragment-index="5">stopDrawing</span>(event) {
+	// do cool stuff here
+}
 		</pre>
 </section>
 
+<section>
+	<h2>local.js</h2>
+	<h3 class="subhead highlighted-red">Solution to challenge 4, part 2</h3>
+
+		<pre style="font-size:0.7em;padding-left:10px;">
+
+document.addEventListener('click', function(event) {
+	console.log(event);
+	socket.emit('test', <span class="fragment highlight-current-red" data-fragment-index="0">{x: <span class="fragment highlight-current-red" data-fragment-index="1">event.clientX</span>, y: <span class="fragment highlight-current-red" data-fragment-index="2">event.clientY</span>}</span>);
+});
+	</pre>
+</section>
+
 <!-- - - - - - - - - - - - - - - - - END of  CHALLENGE 4 - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - -->
+<!-- - - - - - - - - - - - - - - - - - OVERVIEW CANVAS - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<section>
+	<h2 class="subhead">Now let's get artistic!</h2>
+	<h2 class="big">Drawing with the Canvas API</h2>
+</section>
+
+<section>
+	<h2>local.js</h2>
+	<h3 class="subhead">Try out this code and see what happens:</h3>
+	<pre><code class="smaller js" data-trim contenteditable="">
+// Create a variable for the web page's canvas element, which has id="mycanvas":
+var canvas = document.getElementById('mycanvas');
+
+// Create a variable to access the two-dimensional canvas drawing functions
+var pen = canvas.getContext('2d');
+
+pen.beginPath();	// Initialize
+pen.moveTo(0,0);	// Choose starting coordinates (top left corner of canvas)
+pen.lineTo(500,500);	// Choose ending coordinates (500 pixels from top, 500 pixels from left)
+pen.stroke();		// Draw the line
+	</code></pre>
+</section>
+
+<section>
+	<h2 class="big" style="margin-bottom:50px;">Congrats, you drew a line!</h2>
+	<iframe class="noborder noshadow" height='600' scrolling='no' src='//codepen.io/LearnToCodeLA/embed/VKApaP/?height=600&theme-id=dark&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='http://codepen.io/LearnToCodeLA/pen/VKApaP/'>VKApaP</a> by Learn to Code LA (<a href='http://codepen.io/LearnToCodeLA'>@LearnToCodeLA</a>) on <a href='http://codepen.io'>CodePen</a>.
+	</iframe>
+</section>
+
+<section>
+	<h2 style="margin-bottom:40px;">Four Canvas Functions to Draw a Line</h2>
+
+	<p style="font-size:0.85em;margin-bottom:40px;">Once you have access to an HTML canvas element and you've created a 2D drawing context ( the "pen" object here), you need these four functions <strong>in this order</strong> to draw a line:</p>
+
+	<ol class="listspaces">
+		<li class="fragment highlight-current-blue"><strong>pen.beginPath()</strong> -- Pick up your pen!</li>
+		<li class="fragment highlight-current-blue"><strong>pen.moveTo(x, y)</strong> -- Choose start position</li>
+		<li class="fragment highlight-current-blue"><strong>pen.lineTo(x, y)</strong> -- Choose end position</li>
+		<li class="fragment highlight-current-blue"><strong>pen.stroke()</strong> -- Make the line visible!</li>
+	</ol>
+</section>
+
+<section>
+	<h2>local.js - The <em>complete</em> code!</h2>
+	<h3 class="subhead">This is what your local.js file should look like now:</h3>
+	<pre><code class="smaller js" data-trim contenteditable="">
+// Start a WebSocket connection with the server using SocketIO
+var socket = io();
+
+// Testing event listeners: when the user clicks the page,
+document.addEventListener('click', function(event) {
+	// Display the click event data in the client console
+	console.log(event);
+	// Send an event named "test" to the server with the event data
+	socket.emit('test', event);
+});
+
+// When the client receives an event named "test",
+socket.on('test', function(data) {
+	// Take whatever data was received and display it in the client console
+	console.log(data);
+});
+
+// Create a variable for the web page's canvas element, which has id="mycanvas":
+var canvas = document.getElementById('mycanvas');
+
+// Create a variable to access the two-dimensional canvas drawing functions
+var pen = canvas.getContext('2d');
+
+document.addEventListener('mousedown', startDrawing);
+document.addEventListener('mousemove', drawStuff);
+document.addEventListener('mouseup', stopDrawing);
+
+function startDrawing(event) {
+	console.log(event.clientX + ", " + event.clientY);
+	// *** Which canvas drawing functions should go here?? ***
+}
+function drawStuff(event) {
+	console.log(event.clientX + ", " + event.clientY);
+	// *** Which canvas drawing functions should go here?? ***
+}
+function stopDrawing(event) {
+	console.log(event.clientX + ", " + event.clientY);
+	// *** Which canvas drawing functions should go here?? ***
+}
+
+	</code></pre>
+</section>
+
+<!-- - - - - - - - - - - - - - - - END of  OVERVIEW CANVAS - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- - - - - - - - - - - - - - - - - - CHALLENGE 5  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<section>
+	<h2 style="margin-bottom:40px;">Challenge 5: Put It (Almost) All Together!</h2>
+	<p style="margin-bottom:40px;">See if you can combine the code we have so far in <strong>local.js</strong> with the canvas functions to make it draw wherever you move your mouse!</p>
+	<p class="highlighted-blue"><strong>Hint:</strong> There are <em>four</em> drawing functions and <em>three</em> functions you could put them in (startDrawing, drawStuff, and stopDrawing)</p>
+</section>
+
+<section>
+	<h2 class="big" style="margin-bottom:40px;">To Be Continued!</h2>
+	<p>Tinker with it this week, and when we meet again next time we'll look at what everyone came up with!</p>
+</section>
+
+
+<!-- - - - - - - - - - - - - - - - - END of  CHALLENGE 5 - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - -->
 
 <!-- - - - - - - - - - - PUBLISH ON GITHUB AND HEROKU - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 				<section>
@@ -1015,253 +1210,23 @@ io.on('connection', function(socket) {
 					<h2 class="big">Congratulations!</h2>
 					<h2 class="subhead">Share your first real-time interactive web app with the world!</h2>
 
-					<p style="margin-top:70px;"><strong>Now let's tinker with it!</strong>
-					Check out more in the SocketIO docs: <a href="http://socket.io/docs/">http://socket.io/docs/</a></p>
+					<p style="margin-top:70px;"><strong>See you next time for more coding!</strong></p>
 				</section>
 <!-- - - - - - - - - - - END PUBLISH ON GITHUB AND HEROKU - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<!-- - - - - - - - - - - SETUP AND INSTALLATION - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-			<section>
-				<h2 class="subhead">First, the boring part:</h2>
-				<h2 class="big">Setup and Installation</h2>
-			</section>
 
-			<section>
-				<h2>Download the sample code</h2>
-				<p>Go to the link below, click the green "Clone or download" button, then click "Download ZIP"</p>
-				<p><a href="https://github.com/LearnToCodeLA/paintdemo/tree/starter">https://github.com/LearnToCodeLA/paintdemo/tree/starter</a></p>
-
-				<a href="https://github.com/LearnToCodeLA/paintdemo/tree/starter"><img src="images/samplecode.png"></a>
-			</section>
-
-			<section>
-				<h2>Unzip the project folder</h2>
-				<p>Open up the downloaded .zip file; there will be a folder inside it. Move that folder onto your desktop (or another place where you can find it easily)</p>
-
-				<img src="images/unzip.png">
-			</section>
-
-			<section>
-				<h2>Install NodeJS from <a href="https://nodejs.org/">NodeJS.org</a></h2>
-				<p>Choose the LTS "Recommended for Most Users" version:
-					<a href="https://nodejs.org/"><img src="images/nodejs-install1.png" width="70%"></a>
-			</section>
-
-			<section>
-				<p>Then open the installer and follow the instructions. (Just click "Next" a bunch of times and let it do its thing; all the default settings should be fine.)</p>
-				<img class="noborder" src="images/nodejs-install2.png" width="60%">
-			</section>
-
-			<section>
-				<h2 style="margin-bottom:50px;">Time to geek out in the command line!</h2>
-				<p><strong>Windows:</strong> Open Command Prompt (you can search for it in the Start menu)</p>
-
-				<p><strong>Mac:</strong> Open Terminal (you can search for it in Finder or Spotlight)</p>
-				<img class="halves" src="images/open-commandprompt.png">
-				<img class="halves" src="images/open-terminal.png">
-			</section>
-
-			<section>
-				<p style="width:90%;">To check the version of NodeJS and confirm it installed correctly, type this and hit enter:</p>
-				<pre><code contenteditable="">node -v</code></pre>
-				<img src="images/commandprompt-node-v.png" width="80%">
-			</section>
-
-			<section>
-				<p>Next, <strong>cd</strong> or "Change Directories" to go into the project folder.</p>
-				<p>Here's a nifty trick: type "cd" followed by a space, then drag and drop the folder into the command line and hit enter:</p>
-				<img class="noborder noshadow" src="images/commandprompt-dragndrop.gif" width="90%">
-			</section>
-
-			<section>
-				<h2 style="margin-bottom:40px;">Install Express and SocketIO</h2>
-				<p>Next we'll use <a href="https://www.npmjs.com/">npm</a> to install the dependencies listed in our package.json file by typing this into the command line:</p>
-
-				<pre style="margin:50px;"><code contenteditable="">npm install</code></pre>
-
-				<p>This will download a bunch of stuff and create a "node_modules" folder with all the code needed for <a href="https://expressjs.com/">Express</a> and <a href="https://socket.io/">SocketIO</a>.</p>
-			</section>
-
-			<section>
-				<h2>That's it! You're all set up.</h2>
-				<h2 class="subhead">Now we can start the show!</h2>
-			</section>
-<!-- - - - - - - - - - - END  SETUP AND INSTALLATION - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-<!-- - - - - - - - - - - JS PRIMER OR JUST DIVE RIGHT IN ?? - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-			<!-- <section>
-				<h2 class="subhead">Let's start with a refresher:</h2>
-				<h2 class="big">JavaScript in 15 Minutes</h2>
-			</section> -->
-
-
-
-			<!-- <section>
-				<h3 style="margin-bottom: 30px;">How to open your web browser's JavaScript console</h3>
-				<ul>
-					<li><strong>Chrome:</strong> Ctrl + Shift + J or Cmd + Opt + J</li>
-					<li><strong>Firefox:</strong> Ctrl + Shift + K or Cmd + Opt + K</kbd></li>
-					<li><strong>Safari:</strong> Cmd + Opt + C</kbd>
-						<ul><li>
-							<em>Note: first you may need to enable web inspector (<a href="https://developer.apple.com/library/mac/documentation/AppleApplications/Conceptual/Safari_Developer_Guide/GettingStarted/GettingStarted.html">see instructions here</a>)</em>
-						</ul></li>
-					</li>
-				</ul>
-
-				<a href="http://jsforcats.com/"><img style="margin-top:20px;" src="images/console-js-ex.gif"></a>
-
-			</section> -->
-
-
-
-
-
-			<!-- <section>
-				<h2>Let's write some JavaScript together:</h2>
-				<pre><code id="codecast1" class="javascript smaller" data-trim contenteditable="" style="height:450px;">
-// This is a JavaScript comment, a line that starts with "//"
-// Comments are ignored by the computer when running your code.
-// They're great for making notes to yourself or your team!
-
-				</code></pre>
-			</section>
-
-			<section>
-				<div class="halves" style="width: 75%">
-					<pre><code id="codecast2" class="javascript smaller" data-trim contenteditable="" style="height:450px;">
-// Now let's use JavaScript to interact with the HTML!
-
-// First try clicking on the button to the right    > > >
-// It doesn't do anything yet, but we'll fix that!
-
-					</code></pre>
-				</div>
-				<div class="halves" style="margin-top:90px;width: 25%;">
-					<button id="testbutton" style="font-size: 40px; padding: 20px;">Click me!</button>
-  					<p id="testdisplay" style="border: 2px solid black; font-size:30px; padding: 20px; margin-top: 40px;">
-						Display messages here
-					</p>
-				</div>
-			</section> -->
-
-
-
-<!--
-
-<div class="fragment current-visible">
-						<pre><code class="smaller js" data-trim contenteditable="">
-var express = require('express');
-var app = express();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-var port = process.env.PORT || 8000;
-
-app.use(express.static('public'));
-
-http.listen(port, function(){
-	console.log('Listening on port ' + port);
-});
-
-// Do stuff when user connects over websocket:
-io.on('connection', function(socket){
-	console.log('A user connected!');
-});
-						</code></pre>
-</div>
-
--->
-
-<!--
-				<section>
-					<h1 style="font-size:1.6em;">Sending stuff from client to server</h1>
-					<div class="halves">
-						<h2>Client</h2>
-						<pre><code class="smaller" data-trim contenteditable="">
-socket.emit('event name here',
-'Sending a message! Or JSON data!'
-);
-						</code></pre>
-					</div>
-
-					<div class="halves">
-						<h2>Server</h2>
-						<pre><code class="smaller" data-trim contenteditable="">
-// Server code (after boilerplate)
-io.on('connection', function(socket){
-
-	socket.on('event name here', function(data){
-		console.log('Message receieved!');
-	});
-
-});
-						</code></pre>
-					</div>
-				</section>
-
-				<section>
-					<h1 style="font-size:1.6em;">Sending stuff from server to client(s)</h1>
-					<div class="halves">
-						<h2>Client</h2>
-						<pre><code class="smaller" data-trim contenteditable="">
-socket.on('event name here ', function(data){
-	console.log('Message recieved: ' + data);
-});
-						</code></pre>
-					</div>
-
-					<div class="halves">
-						<h2>Server</h2>
-						<pre><code class="smaller" data-trim contenteditable="">
-// Server code (after boilerplate)
-io.on('connection', function(socket){
-
-	// send to ALL clients
-	io.emit('event name here', 'Hi all!');
-
-});
-						</code></pre>
-					</div>
-				</section>
--->
-<!-- - - - - - - - - - - - - - - - - NODEMON YAYY - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-			<section>
-				<h2>Save time with Nodemon!</h2>
-				<p><a href="https://github.com/remy/nodemon">Nodemon</a> is a tool that restarts your NodeJS server every time you change one of your fiels. Very handy!</p>
-				<p>To install it, go to your command line and run this command:</p>
-				<pre style="margin:50px;"><code class="" contenteditable="">npm install -g nodemon</code></pre>
-				<p>Now you can use Nodemon with every project; the "-g" installs it globally.<p>
-			</section>
-
-			<section>
-				<h2>Run with Nodemon</h2>
-				<p>Now instead of using "node app.js" to start your server, you'll run this command:</p>
-				<pre style="margin:50px;"><code class="" contenteditable="">nodemon app.js</code></pre>
-				<p>That will start your server, and now you won't have to restart it after every change. Yay! You'll still have to refresh the browser, but there are other tools for "live reload" to help you there too.<p>
-			</section>
-<!-- - - - - - - - - - - - - - - - - END of NODEMON SECTION - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<!-- - - - - - - - - - - OTHER WEBSOCKET DEMOS - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-			<section>
-				<h2 style="margin-bottom:25px;">Examples of WebSocket in the Wild</h2>
-				<ul>
-					<li><strong><a href="http://www.jamwithchrome.com/technology">JAM with Chrome</a></strong></li>
-					<li><strong><a href="https://posio.abrenaut.com/">Multiplayer geography game</a></strong> (<a href="https://github.com/abrenaut/posio">See code here</a>)</li>
-					<li><strong><a href="http://browserquest.mozilla.org/">BrowserQuest</a></strong> (<a href="https://github.com/mozilla/BrowserQuest">See code here</a>)</li>
-				</ul>
-				<a href="http://browserquest.mozilla.org/"><img style="margin-top:20px;" src="images/browserquest.jpg"></a>
-			</section>
-<!-- - - - - - - - - - - END of OTHER WEBSOCKET DEMOS - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-<section>
+<!-- <section>
 	<h2>**999-footer.html**</h2>
 	<h2>idea for last slide or class part 2: little voting app, vote on next feature to add!</h2>
 	<p>other mini-app idea: timer that runs in background of challenge slides, that I can set/reset!</p>
-</section>
+	<p><strong>in part two: show examples of other whiteboard apps, like the music one, the AI one, etc!!</strong>, start part 2 by playing Chrome sports or browser jam!!</p>
+</section> -->
 
 			</div><!-- END OF .slides -->
 		</div><!-- END OF .reveal -->
 
 	<footer class="branding">
-		<a class="button" href="#">Workshop Homepage</a>
-		<cite>By <a href="https://twitter.com/LearningNerd">Liz Krane</a> for <a href="http://learntocodela.org/">Learn to Code LA</a></cite>
+		<a target="_blank" class="button" href="http://learntocodela.org/socketio-workshop/">Workshop Homepage</a>
+		<cite>By <a target="_blank" href="https://twitter.com/LearningNerd">Liz Krane</a> for <a target="_blank" href="http://learntocodela.org/">Learn to Code LA</a></cite>
 	</footer>
 
 	<script src="lib/js/head.min.js"></script>

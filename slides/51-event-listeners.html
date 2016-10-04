@@ -1,5 +1,11 @@
 <!-- - - - - - - - - - - - - - - - - - - - - - EVENT LISTENERS - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <section>
+	<h2 class="subhead">Let's look at some code!</h2>
+	<h2 class="big">JavaScript Events in Action</h2>
+
+</section>
+
+<section>
 	<h2 style="margin-bottom:40px;">Breakdown of the JavaScript Event Listener</h2>
 
 		<pre style="font-size:1.24em;padding-left:15px;margin:0;width:100%;">
@@ -56,10 +62,13 @@ document.addEventListener('click', <span class="highlighted-red">function(event)
 </section>
 
 <section>
-	<h2 style="margin-bottom:40px">Test it out!</h2>
-	<p style="margin-bottom:40px;font-size:0.93em;">
-		Copy-paste the code into local.js, restart your app, click somewhere inside your blank web page, and then check your browser console.
-	</p>
+	<h2 style="margin-bottom:40px">Let's test it out, shall we?</h2>
+	<ol class="listspaces" style="margin-bottom:15px;font-size:0.92em;">
+		<li><strong>Copy-paste the code below into local.js</strong> (after your existing code)</li>
+		<li><strong>Restart your app</strong> (Remember: Ctrl + C, "node app.js", refresh the browser)</li>
+		<li><strong>Click somewhere inside your blank web page</strong> (after refreshing the page!)</li>
+		<li><strong>And then check your browser console</strong></li>
+	</ol>
 	<pre style="font-size:1.1em;margin:0;width:100%;"><code class="js" data-trim contenteditable="">
 
 document.addEventListener('click', function(event) {
@@ -69,9 +78,10 @@ document.addEventListener('click', function(event) {
 </section>
 
 <section>
-	<p style="font-size:1.1em;width:85%;margin:0 auto;margin-bottom:40px;">
-		You should see a MouseEvent object in the console, which you can click to expand. Look, it's full of data!
+	<h2 style="margin-bottom:50px;">Behold! Event data!</h2>
+	<p style="margin-bottom:20px;">
+		You should see a MouseEvent object in the console. Click to expand the data:
 	</p>
-	<p>**IMAGE / GIF HERE**</p>
+	<img src="images/console-expand-object.gif" width="600">
 </section>
 <!-- - - - - - - - - - - - - - - - - - - - - END of EVENT LISTENERS - - - - - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - -->
