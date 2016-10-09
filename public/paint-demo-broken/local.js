@@ -24,7 +24,7 @@ function drawStuff(event) {
 	pen.lineTo(event.clientX, event.clientY);
 	if (isDrawing) {
 		pen.stroke();
-		socket.emit('mousemove', {x: event.clientX, y: event.clientY, buttons: event.buttons});
+		socket.emit('mousemove', {x: event.clientX, y: event.clientY});
 	}
 }
 

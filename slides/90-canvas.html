@@ -41,49 +41,51 @@ pen.stroke();		// Draw the line
 </section>
 
 <section>
-	<h2>local.js - The <em>complete</em> code!</h2>
-	<h3 class="subhead">This is what your local.js file should look like now:</h3>
+	<h2>local.js</h2>
+	<h3 class="subhead">Copy-paste this into your local.js file for the next challenge:</h3>
 	<pre><code class="smaller js" data-trim contenteditable="">
 // Start a WebSocket connection with the server using SocketIO
 var socket = io();
 
-// Testing event listeners: when the user clicks the page,
-document.addEventListener('click', function(event) {
-	// Display the click event data in the client console
-	console.log(event);
-	// Send an event named "test" to the server with the event data
-	socket.emit('test', event);
-});
-
-// When the client receives an event named "test",
-socket.on('test', function(data) {
-	// Take whatever data was received and display it in the client console
-	console.log(data);
-});
-
-// Create a variable for the web page's canvas element, which has id="mycanvas":
+// Create a variable for the web page's canvas element, which has id="mycanvas"
 var canvas = document.getElementById('mycanvas');
 
 // Create a variable to access the two-dimensional canvas drawing functions
 var pen = canvas.getContext('2d');
 
-document.addEventListener('mousedown', startDrawing);
-document.addEventListener('mousemove', drawStuff);
-document.addEventListener('mouseup', stopDrawing);
+// Set event listeners for when the mouse button is pressed down, when the mouse moves, and when the mouse button is released
+canvas.addEventListener('mousedown', startDrawing);
+canvas.addEventListener('mousemove', drawStuff);
+canvas.addEventListener('mouseup', stopDrawing);
 
 function startDrawing(event) {
-	console.log(event.clientX + ", " + event.clientY);
-	// *** Which canvas drawing functions should go here?? ***
-}
-function drawStuff(event) {
-	console.log(event.clientX + ", " + event.clientY);
-	// *** Which canvas drawing functions should go here?? ***
-}
-function stopDrawing(event) {
-	console.log(event.clientX + ", " + event.clientY);
-	// *** Which canvas drawing functions should go here?? ***
+	console.log("START: " + event.clientX + ", " + event.clientY);
+
+	// Which canvas drawing functions should go here??
+	// HINT: start with pen.beginPath();
+
 }
 
+function drawStuff(event) {
+	console.log("Moved to: " + event.clientX + ", " + event.clientY);
+
+	// Which canvas drawing functions should go here?? (or none at all?)
+
+}
+
+function stopDrawing(event) {
+	console.log("STOP: " + event.clientX + ", " + event.clientY);
+
+	// Which canvas drawing functions should go here?? (or none at all?)
+
+}
+
+// This is code from before -- we're not using it right now:
+socket.on('test', function(data) {
+	// When the client receives an event named "test",
+	// Take whatever data was received and display it in the client console
+	console.log(data);
+});
 	</code></pre>
 </section>
 

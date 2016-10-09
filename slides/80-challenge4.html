@@ -44,7 +44,7 @@ function <span class="fragment highlight-current-red" data-fragment-index="5">st
 
 document.addEventListener('click', function(event) {
 	console.log(event);
-	socket.emit('test', <span class="fragment highlight-current-red" data-fragment-index="0">{x: <span class="fragment highlight-current-red" data-fragment-index="1">event.clientX</span>, y: <span class="fragment highlight-current-red" data-fragment-index="2">event.clientY</span>}</span>);
+	socket.emit('test', <span class="highlighted-red">{x: event.clientX, y: event.clientY}</span>);
 });
 	</pre>
 </section>

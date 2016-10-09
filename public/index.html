@@ -998,7 +998,7 @@ function <span class="fragment highlight-current-red" data-fragment-index="5">st
 
 document.addEventListener('click', function(event) {
 	console.log(event);
-	socket.emit('test', <span class="fragment highlight-current-red" data-fragment-index="0">{x: <span class="fragment highlight-current-red" data-fragment-index="1">event.clientX</span>, y: <span class="fragment highlight-current-red" data-fragment-index="2">event.clientY</span>}</span>);
+	socket.emit('test', <span class="highlighted-red">{x: event.clientX, y: event.clientY}</span>);
 });
 	</pre>
 </section>
@@ -1047,49 +1047,51 @@ pen.stroke();		// Draw the line
 </section>
 
 <section>
-	<h2>local.js - The <em>complete</em> code!</h2>
-	<h3 class="subhead">This is what your local.js file should look like now:</h3>
+	<h2>local.js</h2>
+	<h3 class="subhead">Copy-paste this into your local.js file for the next challenge:</h3>
 	<pre><code class="smaller js" data-trim contenteditable="">
 // Start a WebSocket connection with the server using SocketIO
 var socket = io();
 
-// Testing event listeners: when the user clicks the page,
-document.addEventListener('click', function(event) {
-	// Display the click event data in the client console
-	console.log(event);
-	// Send an event named "test" to the server with the event data
-	socket.emit('test', event);
-});
-
-// When the client receives an event named "test",
-socket.on('test', function(data) {
-	// Take whatever data was received and display it in the client console
-	console.log(data);
-});
-
-// Create a variable for the web page's canvas element, which has id="mycanvas":
+// Create a variable for the web page's canvas element, which has id="mycanvas"
 var canvas = document.getElementById('mycanvas');
 
 // Create a variable to access the two-dimensional canvas drawing functions
 var pen = canvas.getContext('2d');
 
-document.addEventListener('mousedown', startDrawing);
-document.addEventListener('mousemove', drawStuff);
-document.addEventListener('mouseup', stopDrawing);
+// Set event listeners for when the mouse button is pressed down, when the mouse moves, and when the mouse button is released
+canvas.addEventListener('mousedown', startDrawing);
+canvas.addEventListener('mousemove', drawStuff);
+canvas.addEventListener('mouseup', stopDrawing);
 
 function startDrawing(event) {
-	console.log(event.clientX + ", " + event.clientY);
-	// *** Which canvas drawing functions should go here?? ***
-}
-function drawStuff(event) {
-	console.log(event.clientX + ", " + event.clientY);
-	// *** Which canvas drawing functions should go here?? ***
-}
-function stopDrawing(event) {
-	console.log(event.clientX + ", " + event.clientY);
-	// *** Which canvas drawing functions should go here?? ***
+	console.log("START: " + event.clientX + ", " + event.clientY);
+
+	// Which canvas drawing functions should go here??
+	// HINT: start with pen.beginPath();
+
 }
 
+function drawStuff(event) {
+	console.log("Moved to: " + event.clientX + ", " + event.clientY);
+
+	// Which canvas drawing functions should go here?? (or none at all?)
+
+}
+
+function stopDrawing(event) {
+	console.log("STOP: " + event.clientX + ", " + event.clientY);
+
+	// Which canvas drawing functions should go here?? (or none at all?)
+
+}
+
+// This is code from before -- we're not using it right now:
+socket.on('test', function(data) {
+	// When the client receives an event named "test",
+	// Take whatever data was received and display it in the client console
+	console.log(data);
+});
 	</code></pre>
 </section>
 
@@ -1098,7 +1100,7 @@ function stopDrawing(event) {
 <section>
 	<h2 style="margin-bottom:40px;">Challenge 5: Put It (Almost) All Together!</h2>
 	<p style="margin-bottom:40px;">See if you can combine the code we have so far in <strong>local.js</strong> with the canvas functions to make it draw wherever you move your mouse!</p>
-	<p class="highlighted-blue"><strong>Hint:</strong> There are <em>four</em> drawing functions and <em>three</em> functions you could put them in (startDrawing, drawStuff, and stopDrawing)</p>
+	<p class="highlighted-blue"><strong>Hint:</strong> There are <em>four</em> drawing functions and <em>three</em> functions you could put them in (startDrawing, drawStuff, and stopDrawing)<br> ...so if in doubt, try every possible combination!</p>
 </section>
 
 <section>
@@ -1245,45 +1247,3 @@ function stopDrawing(event) {
 	<script src="/local.js"></script>
 </body>
 </html>
-<!-- - - - - - - - - - - - - - - SOCKETIO FUNCTIONS  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-<section>
-	<p>show io.on('connection', function(socket){...}) from step1 code</p>
-	<p>this is the listener that starts off everything else!</p>
-	<p>notice that this is what gives us access to the SOCKET object, so all our other socketIO functions go inside this function!
-	<p>show an illustration of how this code runs multiple times, with multiple clients connecting, multiple sockets</p>
-	<p>show step 2 code and what happens when, what happens multiple times, etc</p>
-</section>
-<!-- - - - - - - - - - - - - - - - END of SOCKETIO FUNCTIONS - - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - -->
-<!-- - - - - - - - - - - - - - - - - **********  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-<!--
-
-- then talk about HTTP vs WebSocket?? or put that in prereqs video too??
-
-
-
-STEP **: GETTING MOUSE COORDINATES!!
-
-- Group googling: how to get mouse coordinates in JS
-- Show solution
-- CHALLENGE: Send mouse x and y coordinates inside an object, send to the server!
-
-
-STEP **: CANVAS introoo!!! how to draw a line locally, no user input
-GROUP GOOGLING: how to check when mouse is clicked, unclicked, and moved -- 3 events!
-CHALLENGE: how to draw a line locally based on your mouse movements
-
-STEP **: Send canvas data to all other clients with socket.broadcast.emit
-THEN: draw canvas from other clients using received data
-
-THEN: BUUUUGGGG, show how it's broken.
-	talking point: hard to test multiuser apps with just one computer; multiple tabs isn't a perfect simulation!
-
-PART 2:
-- introduce timestamps .... interpolation... drawing line segments...
-- googling challenge: give each user a random color ??? OR: do chat app demo instead?
-
--->
-
-<!-- - - - - - - - - - - - - - - - END of ********** - - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - -->
