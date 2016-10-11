@@ -1,0 +1,35 @@
+<!-- - - - - - - - - - - - - - - - - - SERVER RECEIVING CODE  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<section>
+	<h2 style="margin-bottom:40px;">Now, the server needs to receive and broadcast our events!</h2>
+	<p>Which function should we use in app.js for the server to <strong>receive</strong> our data?</p>
+	<p class="fragment highlighted-blue"><strong>socket.on</strong></p>
+	<p class="fragment">How many events does our server need to <strong>receive</strong>?</p>
+	<p class="fragment highlighted-blue"><strong>Two events</strong>: <strong>"mousedown"</strong> and <strong>"mousemove"</strong></p>
+	<p class="fragment">Which function should we use on the server to <strong>send</strong> the data to <em>all other clients</em>?</p>
+	<p class="fragment highlighted-blue"><strong>socket.broadcast.emit</strong></p>
+</section>
+
+<section>
+	<h2>app.js</h2>
+	<h3 class="subhead">Receiving and broadcasting from the server:</h3>
+
+		<pre style="font-size:0.67em;padding-left:10px;">
+
+// all other app.js boilerplate code is still above here
+
+io.on('connection', function(socket) {
+
+	socket.on(<span class="fragment highlight-current-red" data-fragment-index="0">'mousedown'</span>, function(data) {
+		console.log(data);
+		<span class="fragment highlight-current-red" data-fragment-index="1">socket.broadcast.emit('mousedown', data);</span>
+	});
+
+	socket.on(<span class="fragment highlight-current-red" data-fragment-index="0">'mousemove'</span>, function(data) {
+		console.log(data);
+		<span class="fragment highlight-current-red" data-fragment-index="1">socket.broadcast.emit('mousemove', data);</span>
+	});
+
+});
+	</pre>
+</section>
+<!-- - - - - - - - - - - - - - - - - END of SERVER RECEIVING CODE - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - -->

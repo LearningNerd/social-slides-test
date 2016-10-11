@@ -1,0 +1,66 @@
+<!-- - - - - - - - - - - - - - - - - - DRAW FROM BROADCST  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<section>
+	<h2 style="margin-bottom:40px;">Last step: the clients still need to receive data from the server!!</h2>
+	<p>Which function should we use in local.js so that all clients can <strong>receive</strong> data from the server?</p>
+	<p class="fragment highlighted-blue"><strong>socket.on</strong></p>
+	<p class="fragment">How many events do our clients need to <strong>receive</strong>?</p>
+	<p class="fragment highlighted-blue"><strong>Two events</strong>: <strong>"mousedown"</strong> and <strong>"mousemove"</strong></p>
+	<p class="fragment">What should the client code do when receiving these two events?</p>
+	<p class="fragment highlighted-blue">Draw lines exactly the same way as we did before!</p>
+</section>
+
+<section>
+	<h2>local.js</h2>
+	<h3 class="subhead">Receiving data from the server and drawing lines:</h3>
+
+		<pre style="font-size:0.67em;padding-left:10px;">
+
+// Add this to the bottom of your local.js file:
+
+socket.on(<span class="fragment highlight-current-red" data-fragment-index="0">'mousedown'</span>, function(<span class="fragment highlight-current-red" data-fragment-index="1">data</span>) {
+	pen.beginPath();
+	pen.moveTo(<span class="fragment highlight-current-red" data-fragment-index="1">data.x</span>, <span class="fragment highlight-current-red" data-fragment-index="2">data.y</span>);
+});
+
+socket.on(<span class="fragment highlight-current-red" data-fragment-index="0">'mousemove'</span>, function(<span class="fragment highlight-current-red" data-fragment-index="1">data</span>) {
+	pen.lineTo(<span class="fragment highlight-current-red" data-fragment-index="1">data.x</span>, <span class="fragment highlight-current-red" data-fragment-index="2">data.y</span>);
+	pen.stroke();
+});
+	</pre>
+</section>
+
+<section>
+	<h2 class="big">Now let's test it out!</h2>
+</section>
+
+<section>
+	<h2 style="margin-bottom:50px;">Save the changes, restart the app, open up two browser tabs and draw!</h2>
+	<p><strong>Remember to:</strong></p>
+	<ol>
+		<li>Press <strong>Ctrl + C</strong> in command line to turn off the server</li>
+		<li>Run <strong>node app.js</strong> in command line to turn the server on again</li>
+		<li>And don't forget to refresh your web browser!</li>
+	</ol>
+</section>
+
+<section>
+	<h2 class="big">Congrats, you have a drawing app!</h2>
+	<h2 class="subhead">But there's a bug... and we'll see it soon.</h2>
+</section>
+
+<!--
+NEXT SECTIONS:
+
+- test it live, see the bug, discuss for a minute how to fix it
+
+- interpolation as the solution to this bug and also making our app less laggy!
+	- show: dot moving over time, saving last dot and current dot
+	- GIVE the code in steps / walk through it in steps
+	- animated GIF of what's happening??? compare broken vs new code??
+
+- LAST: everyone star the github repo, add an issue on the github for ideas for next features!
+
+-->
+
+
+<!-- - - - - - - - - - - - - - - - - END of DRAW FROM BROADCST - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - -->

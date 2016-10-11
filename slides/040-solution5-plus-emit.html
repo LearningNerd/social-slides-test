@@ -1,0 +1,42 @@
+<!-- - - - - - - - - - - - - - - - - - EMIT,  AFTER CHALLENGE 5  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<section>
+	<h2 style="margin-bottom:40px;">Let's plan how we'll send our data to the server</h2>
+	<p>First question: which function should we use?</p>
+	<p class="fragment highlighted-blue"><strong>socket.emit</strong></p>
+	<p class="fragment">How many events do we need to send to the server for drawing lines?</p>
+	<p class="fragment highlighted-blue"><strong>Two events</strong>: <strong>"mousedown"</strong> and <strong>"mousemove"</strong></p>
+	<p class="fragment">What data do we need to send with these events?</p>
+	<p class="fragment highlighted-blue">Mouse coordinates. Something like this: <strong>{x: event.clientX, y: event.clientY}</strong></p>
+</section>
+
+<section>
+	<h2>local.js</h2>
+	<h3 class="subhead">Using socket.emit to send data to server, <span class="highlighted-red">part 1:</span></h3>
+
+		<pre style="font-size:0.67em;padding-left:10px;">
+function startDrawing(event) {
+	console.log("START: " + event.clientX + ", " + event.clientY);
+	isDrawing = true;
+	pen.beginPath();
+	pen.moveTo(event.clientX, event.clientY );
+	<span class="highlighted-red">socket.emit('mousedown', {x: event.clientX, y: event.clientY});</span>
+}
+	</pre>
+</section>
+
+<section>
+	<h2>local.js</h2>
+	<h3 class="subhead">Using socket.emit to send data to server, <span class="highlighted-red">part 2:</span></h3>
+
+		<pre style="font-size:0.65em;padding-left:10px;">
+function drawStuff(event) {
+	console.log("Moved to: " + event.clientX + ", " + event.clientY);
+	if (isDrawing) {
+		pen.lineTo(event.clientX, event.clientY);
+		pen.stroke();
+		<span class="highlighted-red">socket.emit('mousedown', {x: event.clientX, y: event.clientY});</span>
+	}
+}
+	</pre>
+</section>
+<!-- - - - - - - - - - - - - - - - - END of EMIT, AFTER CHALLENGE 5 - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - -->

@@ -1,0 +1,67 @@
+<!-- - - - - - - - - - - - - - - - - - OVERVIEW CANVAS - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<section>
+	<h2 class="subhead">Now let's get artistic!</h2>
+	<h2 class="big">Drawing with the Canvas API</h2>
+</section>
+
+<section>
+	<h2>index.html</h2>
+	<h3 class="subhead">Our HTML page with the canvas element:</h3>
+	<pre><code class="smaller html" data-trim contenteditable="">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Interactive Painting App Demo&lt;/title&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+
+    &lt;canvas id=&quot;mycanvas&quot; width=&quot;5000&quot; height=&quot;5000&quot;&gt;&lt;/canvas&gt;
+
+    &lt;script src=&quot;/socket.io/socket.io.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;local.js&quot;&gt;&lt;/script&gt;
+
+  &lt;/body&gt;
+&lt;/html&gt;
+	</code></pre>
+</section>
+
+<section>
+	<h2>local.js</h2>
+	<h3 class="subhead">Try out this code and see what happens:</h3>
+	<pre><code class="smaller js" data-trim contenteditable="">
+// Create a variable for the web page's canvas element, which has id="mycanvas":
+var canvas = document.getElementById('mycanvas');
+
+// Create a variable to access the two-dimensional canvas drawing functions
+var pen = canvas.getContext('2d');
+
+pen.beginPath();	// Initialize
+pen.moveTo(0,0);	// Choose starting coordinates (top left corner of canvas)
+pen.lineTo(500,500);	// Choose ending coordinates (500 pixels from top, 500 pixels from left)
+pen.stroke();		// Draw the line
+	</code></pre>
+</section>
+
+<section>
+	<h2 class="big" style="margin-bottom:50px;">Congrats, you drew a line!</h2>
+	<iframe class="noborder noshadow" height='600' scrolling='no' src='//codepen.io/LearnToCodeLA/embed/VKApaP/?height=600&theme-id=dark&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='http://codepen.io/LearnToCodeLA/pen/VKApaP/'>VKApaP</a> by Learn to Code LA (<a href='http://codepen.io/LearnToCodeLA'>@LearnToCodeLA</a>) on <a href='http://codepen.io'>CodePen</a>.
+	</iframe>
+</section>
+
+<section>
+	<h2 style="margin-bottom:40px;">Four Canvas Functions to Draw a Line</h2>
+
+	<p style="font-size:0.85em;margin-bottom:40px;">Once you have access to an HTML canvas element and you've created a 2D drawing context ( the "pen" object here), you need these four functions <strong>in this order</strong> to draw a line:</p>
+
+	<ol class="listspaces">
+		<li class="fragment highlight-current-blue"><strong>pen.beginPath()</strong> -- Pick up your pen!</li>
+		<li class="fragment highlight-current-blue"><strong>pen.moveTo(x, y)</strong> -- Choose start position</li>
+		<li class="fragment highlight-current-blue"><strong>pen.lineTo(x, y)</strong> -- Choose end position</li>
+		<li class="fragment highlight-current-blue"><strong>pen.stroke()</strong> -- Make the line visible!</li>
+	</ol>
+</section>
+
+<!-- - - - - - - - - - - - - - - - END of  OVERVIEW CANVAS - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->

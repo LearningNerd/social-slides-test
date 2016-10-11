@@ -21,8 +21,9 @@ function startDrawing(event) {
 
 function drawStuff(event) {
 	console.log("Move: " + event.clientX + ", " + event.clientY);
-	pen.lineTo(event.clientX, event.clientY);
+
 	if (isDrawing) {
+		pen.lineTo(event.clientX, event.clientY);
 		pen.stroke();
 		socket.emit('mousemove', {x: event.clientX, y: event.clientY});
 	}
@@ -39,13 +40,13 @@ function stopDrawing(event) {
 // }
 
 socket.on('mousedown', function(data){
-	console.log(data);
+	//console.log(data);
 	pen.beginPath();
 	pen.moveTo(data.x, data.y);
 });
 
 socket.on('mousemove', function(data){
-	console.log(data);
+	//console.log(data);
 	pen.lineTo(data.x, data.y);
 	pen.stroke();
 });
